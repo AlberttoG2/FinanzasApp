@@ -1,0 +1,16 @@
+<ion-content>
+    <ion-img class="imagen" src="../assets/images/Logotipo Bioethik.jpg"></ion-img>
+  <ion-card mode="ios">
+    <ion-card-content>
+      <ng-form (ngSubmit)="login()" [formGroup]="loginForm">
+        <ion-item>
+          <ion-input type="text" mode="ios" placeholder="Usuario" formControlName="username"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="password" mode="ios" placeholder="Contraseña" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-button class="ion-margin-top" expand="block" (click)="login()">Acceder</ion-button>
+      </ng-form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
