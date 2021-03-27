@@ -17,24 +17,89 @@ export class MenuPage implements OnInit {
     },
     {
       title: 'Ingresos',
-      url: '/menu/ingresos',
-      icon: 'wallet-outline'
-    },
+      children: [
+        {
+          title: 'Clientes',
+          url: '/menu/ingresos/clientes',
+          icon: 'wallet-outline'
+        },
+        {
+          title: 'Terminos de Cobro',
+          url: '/menu/ingresos/terminos-de-cobro',
+          icon: 'wallet-outline'
+        },
+]
+  },
     {
       title: 'Egresos',
-      url: '/menu/egresos',
+      children: [
+        {
+      title: 'Proveedores'
+      url: '/menu/egresos/proveedores',
       icon: 'cash-outline'
     },
+        {
+          title: 'Terminos de Pago'
+          url: '/menu/egresos/terminos-de-pago',
+          icon: 'cash-outline'
+        },
+]
+},
     {
       title: 'Procesos',
-      url: '/menu/procesos',
+      children: [
+        {
+      title: 'Autorizacion de Pagos'
+      url: '/menu/procesos/autorizacion-de-pagos',
       icon: 'settings-outline'
     },
+        {
+          title: 'Importaciones'
+          url: '/menu/procesos/importaciones',
+          icon: 'settings-outline'
+        },
+        {
+          title: 'Propuesta de Pagos'
+          url: '/menu/procesos/propuesta-de-pagos',
+          icon: 'settings-outline'
+        },
+        {
+          title: 'Recepcion'
+          url: '/menu/procesos/recepcion',
+          icon: 'settings-outline'
+        },
+]
+},
     {
       title: 'Reportes',
-      url: '/menu/reportes',
-      icon: 'newspaper-outline'
-    }
+      children: [
+        {
+          title: 'Cuentas por Cobrar'
+          url: '/menu/reportes/cuentas-por-cobrar',
+          icon: 'newspaper-outline'
+        },
+        {
+          title: 'Cuentas por Pagar'
+          url: '/menu/reportes/cuentas-por-pagar',
+          icon: 'newspaper-outline'
+        },
+        {
+          title: 'Historico de Pagos'
+          url: '/menu/reportes/historico-de-pagos',
+          icon: 'newspaper-outline'
+        },
+        {
+          title: 'Saldos'
+          url: '/menu/reportes/Saldos',
+          icon: 'newspaper-outline'
+        },
+        {
+          title: 'Tablero de Control'
+          url: '/menu/reportes/tablero-de-control',
+          icon: 'newspaper-outline'
+        },
+      ]
+    },
   ];
 
   selectedPath = '';
