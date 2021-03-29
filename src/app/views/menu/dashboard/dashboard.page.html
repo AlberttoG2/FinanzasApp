@@ -1,4 +1,37 @@
 <app-header title="Dashboard"></app-header>
+  <ion-item lines="none">
+    <ion-searchbar mode="ios" (ionInput)="filterList($event)"></ion-searchbar>
+  </ion-item>
 <ion-content>
+  <ion-list lines="full">
+      <ion-toolbar *ngFor="let foodItem of foodList">
+        <ion-title>{{foodItem.name}}</ion-title>
+        <ion-buttons slot="end">
+          <ion-button fill="outline" shape="round">
+            <ion-icon name="add"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+  </ion-list>
+  <ion-card>
+    <ion-item>
+      <ion-icon name="business-outline" slot="start"></ion-icon>
+      <ion-label>ID: <b>35</b></ion-label>
+      <ion-buttons slot="end">
+      <ion-button fill="icon-only">
+        <ion-icon name="pencil" color="primary" slot="start"></ion-icon>
+      </ion-button>
+      <ion-button fill="icon-only">
+        <ion-icon name="trash" color="danger" slot="start"></ion-icon>
+      </ion-button>
+      </ion-buttons>
+    </ion-item>
+
+    <ion-card-content>
+      <p>Nombre: <b>Philadelpia</b></p>
+      <p>Direccion: <b>Texas</b></p>
+      <p>Tel: <b>55533669988</b></p>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
