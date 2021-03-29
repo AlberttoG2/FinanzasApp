@@ -36,4 +36,10 @@ export class GlobalService{
   destroyToken() {
     this.auth.destroySession();
   }
+
+
+  getRole() { return this.auth.role(); }
+  getPuesto() { return this.auth.puesto(); }
+  getUsuario() { return this.auth.usuario(); }
+  getAvatar() { return this.auth.avatar(); }
 }

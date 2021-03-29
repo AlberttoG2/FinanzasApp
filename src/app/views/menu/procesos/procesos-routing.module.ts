@@ -1,16 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ProcesosPage } from './procesos.page';
-
 const routes: Routes = [
   {
-    path: '',
-    component: ProcesosPage
-  },
-  {
     path: 'autorizacion-de-pagos',
-    loadChildren: () => import('./autorizacion-de-pagos/autorizacion-de-pagos.module').then( m => m.AutorizacionDePagosPageModule)
+    loadChildren: () => import('./autorizacion-de-pagos/autorizacion-de-pagos.module').then(m => m.AutorizacionDePagosPageModule)
   },
   {
     path: 'importaciones',

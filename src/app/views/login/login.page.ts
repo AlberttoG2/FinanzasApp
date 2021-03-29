@@ -25,8 +25,8 @@ export class LoginPage implements OnInit {
       password: ['', Validators.required]
     });
     validar.subscribe(data => {
-      // const c = data as any;
-      // this.authGuard.autenticar();
+      const c = data as any;
+      this.authGuard.saveCredentials(c.role, c.role, c.avatar, c.usuario);
       this.router.navigate(['/menu/dashboard']);
     });
   }
@@ -41,7 +41,7 @@ export class LoginPage implements OnInit {
       options.params = {id: signinData.username};
       this.http.get(this.globalService.Url + 'init/getsession', options).subscribe(next => {
         const c = next as any;
-        //this.authGuard.saveCredentials(c.role, c.avatar, c.usuario, c.menu);
+        this.authGuard.saveCredentials(c.role, c.role, c.avatar, c.usuario);
         this.dialogService.presentToast('Bienvenido ' + c.usuario, 4, true);
         this.router.navigate(['/menu/dashboard']);
       });

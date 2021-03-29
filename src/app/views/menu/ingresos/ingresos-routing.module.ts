@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { IngresosPage } from './ingresos.page';
-
 const routes: Routes = [
   {
-    path: '',
-    component: IngresosPage
+    path: 'clientes',
+    loadChildren: () => import('./clientes/clientes.module').then(m => m.ClientesPageModule)
+  },
+  {
+    path: 'terminos-de-cobro',
+    loadChildren: () => import('./terminos-de-cobro/terminos-de-cobro.module').then(m => m.TerminosDeCobroPageModule)
   }
 ];
 

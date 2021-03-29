@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { PropuestaDePagosPageRoutingModule } from './propuesta-de-pagos-routing.module';
 
 import { PropuestaDePagosPage } from './propuesta-de-pagos.page';
+import {ComponentsModule} from '../../../../components/components.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    PropuestaDePagosPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        PropuestaDePagosPageRoutingModule,
+        ComponentsModule
+    ],
   declarations: [PropuestaDePagosPage]
 })
 export class PropuestaDePagosPageModule {}

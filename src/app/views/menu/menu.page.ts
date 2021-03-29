@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router, RouterEvent} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {GlobalService} from '../../services/global.service';
@@ -17,92 +17,100 @@ export class MenuPage implements OnInit {
     },
     {
       title: 'Ingresos',
+      icon: 'wallet-outline',
       children: [
         {
           title: 'Clientes',
           url: '/menu/ingresos/clientes',
-          icon: 'wallet-outline'
+          icon: 'people'
         },
         {
           title: 'Terminos de Cobro',
           url: '/menu/ingresos/terminos-de-cobro',
-          icon: 'wallet-outline'
+          icon: 'briefcase-outline'
         },
-]
-  },
+      ]
+    },
     {
       title: 'Egresos',
+      icon: 'cash-outline',
       children: [
         {
-      title: 'Proveedores'
-      url: '/menu/egresos/proveedores',
-      icon: 'cash-outline'
-    },
-        {
-          title: 'Terminos de Pago'
-          url: '/menu/egresos/terminos-de-pago',
-          icon: 'cash-outline'
+          title: 'Proveedores',
+          url: '/menu/egresos/proveedores',
+          icon: 'business-outline'
         },
-]
-},
+        {
+          title: 'Terminos de Pago',
+          url: '/menu/egresos/terminos-de-pago',
+          icon: 'briefcase-outline'
+        },
+      ]
+    },
     {
       title: 'Procesos',
+      icon: 'settings-outline',
       children: [
         {
-      title: 'Autorizacion de Pagos'
-      url: '/menu/procesos/autorizacion-de-pagos',
-      icon: 'settings-outline'
-    },
+          title: 'Autorizacion de Pagos',
+          url: '/menu/procesos/autorizacion-de-pagos/revisar-pagos',
+          icon: 'thumbs-up-outline'
+        },
         {
-          title: 'Importaciones'
+          title: 'Importación de Archivos',
           url: '/menu/procesos/importaciones',
-          icon: 'settings-outline'
+          icon: 'folder-open-outline'
         },
         {
-          title: 'Propuesta de Pagos'
+          title: 'Propuesta de Pagos',
           url: '/menu/procesos/propuesta-de-pagos',
-          icon: 'settings-outline'
+          icon: 'chatbubble-ellipses-outline'
         },
         {
-          title: 'Recepcion'
+          title: 'Recepción de Facturas',
           url: '/menu/procesos/recepcion',
-          icon: 'settings-outline'
+          icon: 'document-attach-outline'
         },
-]
-},
+      ]
+    },
     {
       title: 'Reportes',
+      icon: 'newspaper-outline',
       children: [
         {
-          title: 'Cuentas por Cobrar'
-          url: '/menu/reportes/cuentas-por-cobrar',
-          icon: 'newspaper-outline'
+          title: 'Cuentas por Cobrar',
+          url: '/menu/reportes/cuentas-por-cobrar/antiguedad-de-saldos',
+          icon: 'pricetags-outline'
         },
         {
-          title: 'Cuentas por Pagar'
-          url: '/menu/reportes/cuentas-por-pagar',
-          icon: 'newspaper-outline'
+          title: 'Cuentas por Pagar',
+          url: '/menu/reportes/cuentas-por-pagar/antiguedad-de-saldos',
+          icon: 'wallet-outline'
         },
         {
-          title: 'Historico de Pagos'
+          title: 'Historico de Pagos',
           url: '/menu/reportes/historico-de-pagos',
-          icon: 'newspaper-outline'
+          icon: 'calendar-outline'
         },
         {
-          title: 'Saldos'
-          url: '/menu/reportes/Saldos',
-          icon: 'newspaper-outline'
+          title: 'Saldos Bancarios',
+          url: '/menu/reportes/saldos',
+          icon: 'cash-outline'
         },
         {
-          title: 'Tablero de Control'
+          title: 'Tablero de Control',
           url: '/menu/reportes/tablero-de-control',
-          icon: 'newspaper-outline'
+          icon: 'clipboard'
         },
       ]
     },
   ];
 
   selectedPath = '';
+  public avatar: string;
+  public role: string;
+  public usuario: any;
+
   constructor(private router: Router, private globalService: GlobalService, private http: HttpClient) {
     this.router.events.subscribe((event: RouterEvent) => {
       this.selectedPath = event.url;
@@ -110,6 +118,9 @@ export class MenuPage implements OnInit {
   }
 
   ngOnInit() {
+    this.avatar = this.globalService.getAvatar();
+    this.role = this.globalService.getRole();
+    this.usuario = this.globalService.getUsuario();
   }
 
 

@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { FacturasPorPagarPageRoutingModule } from './facturas-por-pagar-routing.module';
 
 import { FacturasPorPagarPage } from './facturas-por-pagar.page';
+import {ComponentsModule} from '../../../../../components/components.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    FacturasPorPagarPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        FacturasPorPagarPageRoutingModule,
+        ComponentsModule
+    ],
   declarations: [FacturasPorPagarPage]
 })
 export class FacturasPorPagarPageModule {}

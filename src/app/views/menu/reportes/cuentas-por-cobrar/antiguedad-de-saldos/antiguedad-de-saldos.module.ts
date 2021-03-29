@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { AntiguedadDeSaldosPageRoutingModule } from './antiguedad-de-saldos-routing.module';
 
 import { AntiguedadDeSaldosPage } from './antiguedad-de-saldos.page';
+import {ComponentsModule} from '../../../../../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AntiguedadDeSaldosPageRoutingModule
+    AntiguedadDeSaldosPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [AntiguedadDeSaldosPage]
 })

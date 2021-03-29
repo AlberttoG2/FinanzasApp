@@ -27,12 +27,35 @@ export class AuthGuard implements CanActivate{
     this.cookieService.set('username', username, undefined, '/');
   }
 
+  saveCredentials(role: string, puesto: string, avatar: string, usuario: string){
+    this.cookieService.set('avatar', avatar, undefined, '/');
+    this.cookieService.set('role', role, undefined, '/');
+    this.cookieService.set('puesto', puesto, undefined, '/');
+    this.cookieService.set('usuario', usuario, undefined, '/');
+  }
+
   authToken() {
     return this.cookieService.get('authToken');
   }
 
   username() {
     return this.cookieService.get('username');
+  }
+
+
+  role() {
+    return this.cookieService.get('role');
+  }
+
+  avatar() {
+    return this.cookieService.get('avatar');
+  }
+
+  puesto() {
+    return this.cookieService.get('puesto');
+  }
+  usuario() {
+    return this.cookieService.get('usuario');
   }
 
   destroySession(){

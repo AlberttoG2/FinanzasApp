@@ -28,4 +28,14 @@
 
 .active-item {
   color: var(--ion-color-tertiary);
+  font-weight: 500;
+}
+
+.active {
+  font-weight: 1000;
+}
+
+
+.sub-item {
+  padding-left: 20px;
 }

@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { LiberarPagosPageRoutingModule } from './liberar-pagos-routing.module';
 
 import { LiberarPagosPage } from './liberar-pagos.page';
+import {ComponentsModule} from '../../../../../components/components.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    LiberarPagosPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        LiberarPagosPageRoutingModule,
+        ComponentsModule
+    ],
   declarations: [LiberarPagosPage]
 })
 export class LiberarPagosPageModule {}

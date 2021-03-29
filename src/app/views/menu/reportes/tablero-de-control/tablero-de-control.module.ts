@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { TableroDeControlPageRoutingModule } from './tablero-de-control-routing.module';
 
 import { TableroDeControlPage } from './tablero-de-control.page';
+import {ComponentsModule} from '../../../../components/components.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    TableroDeControlPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        TableroDeControlPageRoutingModule,
+        ComponentsModule
+    ],
   declarations: [TableroDeControlPage]
 })
 export class TableroDeControlPageModule {}
