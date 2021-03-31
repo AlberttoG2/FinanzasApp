@@ -137,6 +137,7 @@ export class _proveedores {
   telefono: string;
   estatus: string;
   tipo: string;
+  open?: boolean;
 }
 
 // tslint:disable-next-line:class-name

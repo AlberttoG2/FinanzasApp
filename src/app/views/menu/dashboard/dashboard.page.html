@@ -5,31 +5,26 @@
   <ion-datetime mode="ios" value="1990-02-19" placeholder="Select Date"></ion-datetime>
 </ion-item>
 
-
-
-  <ion-item lines="none">
+<ion-item lines="none">
     <ion-searchbar mode="ios" (ionInput)="filterList($event)"></ion-searchbar>
   </ion-item>
 <ion-content>
 
-  <div *ngFor="let p of foodList">
-
-
+  <div *ngFor="let p of listado">
     <ion-item button (click)="p.open = !p.open" [class.active]="p.open" detail="false">
-
-<!--      <ion-icon mode="ios" name="{{p.icon}}" slot="start"></ion-icon>-->
+      <ion-icon mode="ios" name="business-outline" slot="start"></ion-icon>
       <ion-icon slot="end" name="chevron-down-circle-outline" *ngIf="!p.open"></ion-icon>
       <ion-icon slot="end" name="chevron-up-circle-outline" *ngIf="p.open"></ion-icon>
-      <ion-label>{{p.name}}</ion-label>
+      <ion-label>{{p.rfc}}</ion-label>
     </ion-item>
     <ion-list *ngIf="p.open">
-      <ion-item class="sub-item">
+      <ion-item>
 <!--          <ion-icon name="{{sub.icon}}" slot="start" routerLinkActive="active-item"></ion-icon>-->
 <!--          <ion-label>{{p.name}}</ion-label>-->
         <ion-card>
           <ion-item>
             <ion-icon name="business-outline" slot="start"></ion-icon>
-            <ion-label>{{p.name}}</ion-label>
+            <ion-label>ID: {{p.id}}</ion-label>
             <ion-buttons slot="end">
               <ion-button fill="icon-only">
                 <ion-icon name="pencil" color="primary" slot="start"></ion-icon>
@@ -39,15 +34,19 @@
               </ion-button>
             </ion-buttons>
           </ion-item>
-
           <ion-card-content>
-            <p>Nombre: <b>{{p.name}}</b></p>
-            <p>Direccion: <b>{{p.name}}</b></p>
-            <p>Tel: <b>{{p.name}}</b></p>
+            <p>Nombre: <b>{{p.nombre}}</b></p>
+            <p>RFC: <b>{{p.rfc}}</b></p>
+            <p>Moneda: <b>{{p.moneda}}</b></p>
+            <p>N. de Contacto: <b>{{p.nombreDeContacto}}</b></p>
+            <p>Correo: <b>{{p.correoElectronico}}</b></p>
+            <p>Dirección: <b>{{p.direccion}}</b></p>
+            <p>Telefono: <b>{{p.telefono}}</b></p>
+            <p>Estatus: <b>{{p.estatus}}</b></p>
+            <p>Tipo: <b>{{p.tipo}}</b></p>
           </ion-card-content>
         </ion-card>
         </ion-item>
     </ion-list>
   </div>
-
 </ion-content>

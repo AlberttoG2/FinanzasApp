@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {RestService} from '../../../services/rest.service';
+import {_proveedores} from '../../../interfaces/data.interface';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -47,25 +50,38 @@ export class DashboardPage implements OnInit {
   ] ;
   foodListBackup: any;
   foodList: any;
-  constructor() { }
+  public domain = 'Proveedores';
+  public listado: _proveedores[];
+  public listadoDeBusqueda: any;
+  public busqueda: _proveedores;
+  public getRowsSub: Subscription;
+  constructor(private restService: RestService) { }
 
   ngOnInit() {
     this.foodList = this.f;
+    this.listadoDeBusqueda = this.listado;
+    this.restService.initService(this.domain);
+    this.index();
+  }
+
+  index(){
+    this.getRowsSub = this.restService.index<_proveedores[]>().subscribe(respuesta => {
+      this.listado = respuesta;
+    });
   }
 
   async filterList(evt) {
-    this.foodList = this.f;
+    this.listadoDeBusqueda = this.listado;
     const searchTerm = evt.srcElement.value;
 
     if (!searchTerm) {
       return;
     }
 
-    this.foodList = this.foodList.filter(currentFood => {
-      if (currentFood.name && searchTerm) {
-        return (currentFood.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
+    this.listadoDeBusqueda = this.listadoDeBusqueda.filter(currentFood => {
+      if (currentFood.rfc && searchTerm) {
+        return (currentFood.rfc.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
       }
     });
   }
-
 }
