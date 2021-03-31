@@ -34,7 +34,6 @@
           <ion-icon slot="end" name="chevron-up-circle-outline" *ngIf="p.open"></ion-icon>
           <ion-label>{{p.title}}</ion-label>
         </ion-item>
-
         <ion-list *ngIf="p.open">
           <ion-menu-toggle>
             <ion-item class="sub-item" *ngFor="let sub of p.children" [routerLink]="sub.url" routerDirection="root"
