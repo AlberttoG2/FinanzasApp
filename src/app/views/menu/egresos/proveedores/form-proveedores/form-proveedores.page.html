@@ -5,7 +5,29 @@
 </ion-header>
 
 <ion-content padding>
-<ion-button (click)="SalirConDatos()" color="primary" expand="full">
-  Salir
-</ion-button>
+  <form [formGroup]="formulario" (ngSubmit)="SalirConDatos()">
+    <ion-item>
+      <ion-label>Start Date</ion-label>
+      <ion-datetime mode="ios" formControlName="fecha" placeholder="Select Date"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Razones Sociales</ion-label>
+      <!--    ngModel => Variable en la que se guarda el item seleccionado-->
+      <!--    items => Listado de items-->
+      <!--    itemValueField => este es el valor que toma en cuenta-->
+      <!--    itemTextField => este es el valor que se muestra cuando seleccionamos algo-->
+      <!--    canSearch => permite la busqueda en el componente-->
+      <!--    onChange => aqui se ejecuta un metodo cuando ocurre un cambio dentro del componente-->
+      <ionic-selectable
+        [items]="razonSocialCombo"
+        itemValueField="id"
+        itemTextField="descripcion"
+        [canSearch]="true"
+        (onChange)="parchar($event)">
+      </ionic-selectable>
+    </ion-item>
+    <ion-button color="primary" expand="full" type="submit">
+      Salir
+    </ion-button>
+  </form>
 </ion-content>

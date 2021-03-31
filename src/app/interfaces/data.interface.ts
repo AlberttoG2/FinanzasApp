@@ -929,3 +929,9 @@ export class _eliminacionConciliacion {
 export  class _eliminacionConciliacionDetalles {
   id: number;
 }
+
+// tslint:disable-next-line:class-name
+export class _Port {
+  public id: number;
+  public name: string;
+}
