@@ -1,16 +1,11 @@
 <app-header title="Dashboard"></app-header>
 
-<ion-item>
-  <ion-label>Start Date</ion-label>
-  <ion-datetime mode="ios" value="1990-02-19" placeholder="Select Date"></ion-datetime>
-</ion-item>
-
 <ion-item lines="none">
     <ion-searchbar mode="ios" (ionInput)="filterList($event)"></ion-searchbar>
   </ion-item>
 <ion-content>
 
-  <div *ngFor="let p of listado">
+  <div *ngFor="let p of listadoDeBusqueda">
     <ion-item button (click)="p.open = !p.open" [class.active]="p.open" detail="false">
       <ion-icon mode="ios" name="business-outline" slot="start"></ion-icon>
       <ion-icon slot="end" name="chevron-down-circle-outline" *ngIf="!p.open"></ion-icon>

@@ -67,6 +67,7 @@ export class DashboardPage implements OnInit {
   index(){
     this.getRowsSub = this.restService.index<_proveedores[]>().subscribe(respuesta => {
       this.listado = respuesta;
+      this.listadoDeBusqueda = respuesta;
     });
   }
 
