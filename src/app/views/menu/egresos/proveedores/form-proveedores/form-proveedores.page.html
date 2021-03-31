@@ -1,9 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>form-proveedores</ion-title>
+    <ion-title text-capitalize> {{ nombre }} -- {{ pais }} </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content padding>
+<ion-button (click)="SalirConDatos()" color="primary" expand="full">
+  Salir
+</ion-button>
 </ion-content>

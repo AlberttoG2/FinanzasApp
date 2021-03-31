@@ -8,10 +8,10 @@ const routes: Routes = [
     path: '',
     component: ProveedoresPage
   },
-  {
+  /*{
     path: 'form-proveedores',
     loadChildren: () => import('./form-proveedores/form-proveedores.module').then(m => m.FormProveedoresPageModule)
-  }
+  }*/
 ];
 
 @NgModule({

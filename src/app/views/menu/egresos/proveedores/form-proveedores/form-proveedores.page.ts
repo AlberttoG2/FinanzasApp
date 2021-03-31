@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ModalController} from "@ionic/angular";
 
 @Component({
   selector: 'app-form-proveedores',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormProveedoresPage implements OnInit {
 
-  constructor() { }
+  @Input() nombre;
+  @Input() pais;
+  constructor( private modalCtrl: ModalController) { }
 
   ngOnInit() {
+  }
+  SalirConDatos() {
+    this.modalCtrl.dismiss({
+      nombre: 'Vega',
+      pais: 'india'
+    });
   }
 
 }

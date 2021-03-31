@@ -8,14 +8,20 @@ import { ProveedoresPageRoutingModule } from './proveedores-routing.module';
 
 import { ProveedoresPage } from './proveedores.page';
 import {ComponentsModule} from '../../../../components/components.module';
+import {FormProveedoresPage} from './form-proveedores/form-proveedores.page';
+import {FormProveedoresPageModule} from './form-proveedores/form-proveedores.module';
 
 @NgModule({
+  entryComponents: [
+    FormProveedoresPage
+  ],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     ProveedoresPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    FormProveedoresPageModule
   ],
   declarations: [ProveedoresPage]
 })
