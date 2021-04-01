@@ -175,6 +175,7 @@ export class _clientes {
   telefono: string;
   contactoDeCobranza: string;
   referencia: string;
+  open?: boolean;
 }
 
 // tslint:disable-next-line:class-name
