@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ModalController} from "@ionic/angular";
-import {FormProveedoresPage} from "./form-proveedores/form-proveedores.page";
+import {ModalController} from '@ionic/angular';
+import {FormProveedoresPage} from './form-proveedores/form-proveedores.page';
 
 @Component({
   selector: 'app-proveedores',

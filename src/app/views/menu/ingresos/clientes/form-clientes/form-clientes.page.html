@@ -1,9 +1,55 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>form-clientes</ion-title>
+    <ion-title text-capitalize>{{ nombre }} -- {{ pais }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form [formGroup]="formulario" (ngSubmit)="SalirConDatos()">
+    <ion-item>
+      <ion-label>Start Date</ion-label>
+      <ion-datetime mode="ios" formControlName="fecha" placeholder="Slect date"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>ID</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Razones Sociales</ion-label>
+      <ionic-selectable
+        itemValueField="id"
+        itemTextField="descripcion"
+        [canSearch]="true"
+        (onChange)="parchar($event)">
+      </ionic-selectable>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nombre</ion-label>
+      <ion-input [formControl]="nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>RFC</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Monedas</ion-label>
+      <ionic-selectable
+        itemValueField="id"
+        itemTextField="descripcion"
+        [canSearch]="true"
+        (onChange)="parchar($event)">
+      </ionic-selectable>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nombre De Contacto</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Correo Electronico</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Direccion</ion-label>
+    </ion-item>
+    <ion-button color="primary" expand="full" type="submit">
+      Salir
+    </ion-button>
+  </form>
 
 </ion-content>

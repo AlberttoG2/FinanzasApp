@@ -9,8 +9,13 @@ import { ClientesPageRoutingModule } from './clientes-routing.module';
 import { ClientesPage } from './clientes.page';
 import {ComponentsModule} from '../../../../components/components.module';
 import {IonicSelectableModule} from 'ionic-selectable';
+import {FormClientesPage} from './form-clientes/form-clientes.page';
+
 
 @NgModule({
+    entryComponents: [
+      FormClientesPage
+    ],
     imports: [
         CommonModule,
         FormsModule,

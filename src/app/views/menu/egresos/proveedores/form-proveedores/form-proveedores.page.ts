@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ModalController} from "@ionic/angular";
+import {ModalController} from '@ionic/angular';
 import {_combo} from '../../../../../interfaces/data.interface';
 import {RestService} from '../../../../../services/rest.service';
 import {IonicSelectableComponent} from 'ionic-selectable';
@@ -17,7 +17,7 @@ export class FormProveedoresPage implements OnInit {
   @Input() pais;
   public formulario: FormGroup;
   submit: any;
-  constructor( private modalCtrl: ModalController, private restService: RestService) { }
+  constructor( private modalCtrl: ModalController, private restService: RestService ) { }
 
   ngOnInit() {
     this.restService.combo<_combo[]>({id: 'RazonSocial'}, 'comboController').subscribe(result => this.razonSocialCombo = result);

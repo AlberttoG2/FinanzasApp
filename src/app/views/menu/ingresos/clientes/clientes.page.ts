@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {_clientes} from '../../../../interfaces/data.interface';
 import {Subscription} from 'rxjs';
 import {RestService} from '../../../../services/rest.service';
+import {ModalController} from '@ionic/angular';
+import {FormClientesPage} from './form-clientes/form-clientes.page';
 
 @Component({
   selector: 'app-clientes',
@@ -14,12 +16,24 @@ export class ClientesPage implements OnInit {
   public listadoDeBusqueda: _clientes[];
   public busqueda: _clientes;
   public getRowsSub: Subscription;
-  constructor(private restService: RestService ) { }
+  constructor(private restService: RestService, private modalCtrl: ModalController) { }
 
   ngOnInit() {
     this.listadoDeBusqueda = this.listado;
     this.restService.initService(this.domain);
     this.index();
+  }
+  async abrirModal() {
+    const modal = await this.modalCtrl.create({
+      component: FormClientesPage,
+      componentProps: {
+        nombre: 'Alberto',
+        pais: 'Suecia'
+      }
+    });
+    await modal.present();
+    const { data } = await modal.onDidDismiss();
+    console.log('Retorno', data);
   }
   index(){
     this.getRowsSub = this.restService.index<_clientes[]>().subscribe(respuesta => {
