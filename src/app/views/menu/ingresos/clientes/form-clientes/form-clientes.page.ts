@@ -13,6 +13,7 @@ import {IonicSelectableComponent} from 'ionic-selectable';
 export class FormClientesPage implements OnInit {
 
   public razonSocialCombo: _combo[];
+  public monedaCombo: _combo[];
   @Input() nombre;
   @Input() pais;
   public formulario: FormGroup;
@@ -21,9 +22,19 @@ export class FormClientesPage implements OnInit {
 
   ngOnInit() {
     this.restService.combo<_combo[]> ({id: 'RazonSocial'}, 'comboController').subscribe(result => this.razonSocialCombo = result);
+    this.restService.combo<_combo[]> ( {id: 'Divisa'}, 'comboController').subscribe( result => this.monedaCombo = result);
     this.formulario = this.restService.buildForm({
+      id: ['', Validators.required],
       razonSocial: ['', Validators.required],
-      fecha: ['', Validators.required]
+      nombre: ['', Validators.required],
+      rfc: ['', Validators.required],
+      moneda: ['', Validators.required],
+      nombreDeContacto: ['', Validators.required],
+      correoElectronico: ['', Validators.required],
+      direccion: ['', Validators.required],
+      telefono: ['', Validators.required],
+      contactoDeCobranza: ['', Validators.required],
+      referencia: ['', Validators.required]
     });
   }
   SalirConDatos(){
@@ -31,5 +42,8 @@ export class FormClientesPage implements OnInit {
   }
   parchar(event: {component: IonicSelectableComponent, value: any}) {
     this.formulario.patchValue({razonSocial: event.value.id});
+  }
+  parche(event: {component: IonicSelectableComponent, value: any}) {
+    this.formulario.patchValue( {moneda: event.value.id});
   }
 }

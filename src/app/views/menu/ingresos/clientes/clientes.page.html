@@ -29,9 +29,11 @@
               <ion-button fill="icon-only">
                 <ion-icon name="pencil" color="primary" slot="start"></ion-icon>
               </ion-button>
-              <ion-button fill="icon-only">
+
+              <ion-button fill="icon-only" (click)="delete(p)">
                 <ion-icon name="trash" color="danger" slot="start"></ion-icon>
               </ion-button>
+
             </ion-buttons>
           </ion-item>
           <ion-card-content>
@@ -49,4 +51,5 @@
       </ion-item>
     </ion-list>
   </div>
+</ion-content>
 </ion-content>

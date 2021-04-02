@@ -6,48 +6,74 @@
 
 <ion-content>
   <form [formGroup]="formulario" (ngSubmit)="SalirConDatos()">
-    <ion-item>
-      <ion-label>Start Date</ion-label>
-      <ion-datetime mode="ios" formControlName="fecha" placeholder="Slect date"></ion-datetime>
-    </ion-item>
+
     <ion-item>
       <ion-label>ID</ion-label>
+      <ion-input mode="ios" formControlName="id"></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-label>Razones Sociales</ion-label>
       <ionic-selectable
+        [items]="razonSocialCombo"
         itemValueField="id"
         itemTextField="descripcion"
         [canSearch]="true"
         (onChange)="parchar($event)">
       </ionic-selectable>
     </ion-item>
+
     <ion-item>
       <ion-label>Nombre</ion-label>
-      <ion-input [formControl]="nombre"></ion-input>
+      <ion-input mode="ios" formControlName="nombre"></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-label>RFC</ion-label>
+      <ion-input mode="ios" formControlName="rfc"></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-label>Monedas</ion-label>
       <ionic-selectable
+        [items]="monedaCombo"
         itemValueField="id"
         itemTextField="descripcion"
         [canSearch]="true"
-        (onChange)="parchar($event)">
+        (onChange)="parche($event)">
       </ionic-selectable>
     </ion-item>
+
     <ion-item>
       <ion-label>Nombre De Contacto</ion-label>
+      <ion-input mode="ios" formControlName="nombreDeContacto"></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-label>Correo Electronico</ion-label>
+      <ion-input mode="ios" formControlName="correoElectronico"></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-label>Direccion</ion-label>
+      <ion-input mode="ios" formControlName="direccion"></ion-input>
     </ion-item>
-    <ion-button color="primary" expand="full" type="submit">
+
+    <ion-item>
+      <ion-label>Telefono</ion-label>
+      <ion-input mode="ios" formControlName="telefono"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Contacto de Cobranza</ion-label>
+      <ion-input mode="ios" formControlName="contactoDeCobranza"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Referencia</ion-label>
+      <ion-input mode="ios" formControlName="referencia"></ion-input>
+    </ion-item>
+    <ion-button color="primary" expand="full" type="submit" [disabled]="formulario.invalid">
       Salir
     </ion-button>
   </form>

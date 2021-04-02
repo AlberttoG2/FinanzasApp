@@ -4,7 +4,6 @@
     <ion-searchbar mode="ios" (ionInput)="filterList($event)"></ion-searchbar>
   </ion-item>
 <ion-content>
-
   <div *ngFor="let p of listadoDeBusqueda">
     <ion-item button (click)="p.open = !p.open" [class.active]="p.open" detail="false">
       <ion-icon mode="ios" name="business-outline" slot="start"></ion-icon>
