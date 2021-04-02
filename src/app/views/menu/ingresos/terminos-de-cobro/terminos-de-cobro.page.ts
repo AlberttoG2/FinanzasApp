@@ -80,7 +80,10 @@ export class TerminosDeCobroPage implements OnInit {
       });
       await modal.present();
       const {data} = await modal.onDidDismiss();
-      console.log('Retorno', data);
+      if ({data}) {
+        this.restService.update<_terminosDeCobro>(item.id, {data}.data).subscribe(() =>
+          this.dialogService.presentToast('¡¡ ' + this.subtitle + ' Actualizado Exitosamente!!', 3.5, false).then(() => this.index()));
+      }
     });
   }
 
