@@ -181,10 +181,11 @@ export class _clientes {
 // tslint:disable-next-line:class-name
 export class _terminosDeCobro {
   id: number;
-  cliente: _clientes;
+  cliente: string;
   fechaDeFactura: Date;
   fechaDeRecepcion: Date;
   diasDeCredito: number;
+  open?: boolean;
 }
 
 // tslint:disable-next-line:class-name

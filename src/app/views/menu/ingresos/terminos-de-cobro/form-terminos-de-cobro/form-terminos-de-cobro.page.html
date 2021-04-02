@@ -1,9 +1,45 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>form-terminos-de-cobro</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-subheader title="{{data.title}}"></app-subheader>
 
 <ion-content>
-
+  <form [formGroup]="formTerminosDeCobro">
+    <ion-card hidden>
+      <ion-item>
+        <ion-label position="stacked"><b>Folio</b></ion-label>
+        <ion-input type="number" placeholder="Folio" formControlName="id"></ion-input>
+      </ion-item>
+    </ion-card>
+    <ion-card class="ion-padding">
+      <ion-item lines="none">
+        <ion-label position="floating">Seleccionar Cliente</ion-label>
+        <ionic-selectable
+          [items]="clientesCombo" itemValueField="id" closeButtonText="Cancelar"
+          itemTextField="descripcion" [canSearch]="true" (onChange)="parchar($event)">
+        </ionic-selectable>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Fecha de Facturación</ion-label>
+        <ion-checkbox mode="ios" slot="end" formControlName="fechaDeFactura"></ion-checkbox>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Fecha de Recepción</ion-label>
+        <ion-checkbox mode="ios" slot="end" formControlName="fechaDeRecepcion"></ion-checkbox>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label position="stacked">Dias de Credito</ion-label>
+        <ion-input type="number" placeholder="Dias de Credito" formControlName="diasDeCredito"></ion-input>
+      </ion-item>
+    </ion-card>
+    <ion-row>
+      <ion-col size="6">
+        <ion-button expand="block" mode="ios" color="danger" fill="outline" (click)="cancel()">
+          Cancelar
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="block" mode="ios" [disabled]="formTerminosDeCobro.invalid" (click)="save()">
+          Guardar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
 </ion-content>

@@ -9,56 +9,13 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-  f = [
-    {name: 'Amsterdam'},
-    {name: 'Bogota'},
-    {name: 'Buenos Aires'},
-    {name: 'Cairo'},
-    {name: 'Dhaka'},
-    {name: 'Edinburgh'},
-    {name: 'Geneva'},
-    {name: 'Genoa'},
-    {name: 'Glasgow'},
-    {name: 'Hanoi'},
-    {name: 'Hong Kong'},
-    {name: 'Islamabad'},
-    {name: 'Istanbul'},
-    {name: 'Jakarta'},
-    {name: 'Kiel'},
-    {name: 'Kyoto'},
-    {name: 'Le Havre'},
-    {name: 'Lebanon'},
-    {name: 'Lhasa'},
-    {name: 'Lima'},
-    {name: 'London'},
-    {name: 'Los Angeles'},
-    {name: 'Madrid'},
-    {name: 'Manila'},
-    {name: 'New York'},
-    {name: 'Olympia'},
-    {name: 'Oslo'},
-    {name: 'Panama City'},
-    {name: 'Peking'},
-    {name: 'Philadelphia'},
-    {name: 'San Francisco'},
-    {name: 'Seoul'},
-    {name: 'Taipeh'},
-    {name: 'Tel Aviv'},
-    {name: 'Tokio'},
-    {name: 'Uelzen'},
-    {name: 'Washington'},
-  ] ;
-  foodListBackup: any;
-  foodList: any;
   public domain = 'Proveedores';
   public listado: _proveedores[];
   public listadoDeBusqueda: any;
-  public busqueda: _proveedores;
   public getRowsSub: Subscription;
   constructor(private restService: RestService) { }
 
   ngOnInit() {
-    this.foodList = this.f;
     this.listadoDeBusqueda = this.listado;
     this.restService.initService(this.domain);
     this.index();

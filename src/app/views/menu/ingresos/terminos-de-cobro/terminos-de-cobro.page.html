@@ -1,5 +1,51 @@
-<app-header title="Terminos de Cobro"></app-header>
+<app-header title="{{title}}"></app-header>
 
+<ion-item lines="none">
+  <ion-searchbar mode="ios" (ionInput)="filtroTerminosDeCobro($event)"></ion-searchbar>
+</ion-item>
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+                           refreshingText="Actualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="add()">
+    <ion-fab-button size="small" color="success">
+      <ion-icon name="create"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-card *ngFor="let p of listadoDeBusqueda">
+    <ion-item color="dark">
+      <ion-icon name="business-outline" slot="start"></ion-icon>
+      <ion-label>ID: <b>{{p.id}}</b></ion-label>
+      <ion-buttons slot="end">
+        <ion-button fill="clear" (click)="edit(p)">
+          <ion-icon name="pencil" color="primary" slot="icon-only"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" (click)="delete(p)">
+          <ion-icon name="trash" color="danger" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+    <ion-card-content>
+      <p>Nombre: <b>{{p.cliente}}</b></p>
+      <p>Fecha de Factura: <b>{{p.fechaDeFactura}}</b></p>
+      <p>Fecha de Recepcion: <b>{{p.fechaDeRecepcion}}</b></p>
+      <p>Dias de Credito: <b>{{p.diasDeCredito}}</b></p>
+    </ion-card-content>
+  </ion-card>
 
+
+  <ion-card *ngIf="!listadoDeBusqueda">
+    <ion-item color="dark">
+      <ion-icon name="business-outline" slot="start"></ion-icon>
+      <ion-label><ion-skeleton-text animated></ion-skeleton-text></ion-label>
+    </ion-item>
+    <ion-card-content>
+      <p><ion-skeleton-text animated></ion-skeleton-text></p>
+      <p><ion-skeleton-text animated></ion-skeleton-text></p>
+      <p><ion-skeleton-text animated></ion-skeleton-text></p>
+      <p><ion-skeleton-text animated></ion-skeleton-text></p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
