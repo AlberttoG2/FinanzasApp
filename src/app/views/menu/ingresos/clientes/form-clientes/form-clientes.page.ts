@@ -46,4 +46,12 @@ export class FormClientesPage implements OnInit {
   parche(event: {component: IonicSelectableComponent, value: any}) {
     this.formulario.patchValue( {moneda: event.value.id});
   }
+  cancel() {
+    this.modalCtrl.dismiss();
+  }
+
+  save() {
+    console.log(this.formulario.value);
+    this.modalCtrl.dismiss(this.formulario.value);
+  }
 }
