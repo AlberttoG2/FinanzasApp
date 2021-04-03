@@ -31,7 +31,7 @@ export class ClientesPage implements OnInit {
     this.restService.create<_clientes>().subscribe(async datos => {
       const modal = await this.modalCtrl.create({
         component: FormClientesPage,
-        cssClass: 'modal-wrapper-terminos',
+        cssClass: 'modal-wrapper',
         componentProps: {
           data: {title: 'Agregar ' + this.title, data: datos}
         }
@@ -91,7 +91,7 @@ export class ClientesPage implements OnInit {
     this.restService.edit<_clientes>(item.id).subscribe(async datos => {
       const modal = await this.modalCtrl.create({
         component: FormClientesPage,
-        cssClass: 'modal-wrapper-terminos',
+        cssClass: 'modal-wrapper',
         componentProps: {
           data: {title: this.title + ' Folio: ' + item.id, data: datos}
         }

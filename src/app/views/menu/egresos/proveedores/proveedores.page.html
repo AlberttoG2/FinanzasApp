@@ -13,18 +13,18 @@
                            refreshingText="Actualizando...">
     </ion-refresher-content>
   </ion-refresher>
-  <ion-card *ngFor="let p of listadoDeBusqueda">
+  <ion-card *ngFor="let p of listadoDeBusqueda" mode="ios">
     <ion-item color="dark">
       <ion-icon name="business-outline" slot="start"></ion-icon>
       <ion-label>ID: {{p.id}}</ion-label>
       <ion-buttons slot="end">
 
-        <ion-button fill="icon-only" (click)="edit(p)">
-          <ion-icon name="pencil" color="primary" slot="start"></ion-icon>
+        <ion-button fill="clear" (click)="edit(p)">
+          <ion-icon name="pencil" color="primary" slot="icon-only"></ion-icon>
         </ion-button>
 
-        <ion-button fill="icon-only" (click)="delete(p)">
-          <ion-icon name="trash" color="danger" slot="start"></ion-icon>
+        <ion-button fill="clear" (click)="delete(p)">
+          <ion-icon name="trash" color="danger" slot="icon-only"></ion-icon>
         </ion-button>
       </ion-buttons>
     </ion-item>

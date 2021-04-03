@@ -8,16 +8,18 @@ import { FormProveedoresPageRoutingModule } from './form-proveedores-routing.mod
 
 import { FormProveedoresPage } from './form-proveedores.page';
 import {IonicSelectableModule} from 'ionic-selectable';
+import {ComponentsModule} from '../../../../../components/components.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    FormProveedoresPageRoutingModule,
-    IonicSelectableModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        FormProveedoresPageRoutingModule,
+        IonicSelectableModule,
+        ReactiveFormsModule,
+        ComponentsModule
+    ],
   declarations: [FormProveedoresPage]
 })
 export class FormProveedoresPageModule {}

@@ -1,3 +1,12 @@
+import {
+  ChartComponent,
+  ApexAxisChartSeries,
+  ApexChart,
+  ApexXAxis,
+  ApexResponsive,
+  ApexPlotOptions,
+  ApexTitleSubtitle, ApexNonAxisChartSeries
+} from 'ng-apexcharts';
 // tslint:disable-next-line:class-name
 export class _usuario {
   id: number;
@@ -856,7 +865,7 @@ export class _conciliacionDetalle {
   conciliacion: _conciliacion;
   movimiento: number;
   folioOperacion: number;
-  tipoOperacion: string
+  tipoOperacion: string;
 }
 
 // tslint:disable-next-line:class-name
@@ -938,3 +947,12 @@ export class _Port {
   public id: number;
   public name: string;
 }
+
+export type ChartOptions = {
+  series: ApexNonAxisChartSeries;
+  chart: ApexChart;
+  responsive: ApexResponsive[];
+  plotOptions: ApexPlotOptions;
+  labels: any;
+  dataLabels: any;
+};

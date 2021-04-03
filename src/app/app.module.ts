@@ -13,11 +13,13 @@ import {RestService} from './services/rest.service';
 import {environment} from '../environments/environment';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ComponentsModule} from './components/components.module';
+import {NgApexchartsModule} from 'ng-apexcharts';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, ReactiveFormsModule, ComponentsModule],
+  imports: [BrowserModule, NgApexchartsModule, IonicModule.forRoot(), AppRoutingModule,
+    HttpClientModule, ReactiveFormsModule, ComponentsModule],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: 'API_URL', useValue: environment.serverUrl},

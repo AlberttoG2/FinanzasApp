@@ -1,57 +1,57 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title title="{{ data.title }}"></ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<app-subheader title="{{data.title}}"></app-subheader>
 <ion-content>
-  <form [formGroup]="formulario" (ngSubmit)="SalirConDatos()">
+  <form [formGroup]="formulario">
     <ion-card hidden>
       <ion-item>
         <ion-label position="stacked"><b>Folio</b></ion-label>
         <ion-input type="number" placeholder="Folio" formControlName="id"></ion-input>
       </ion-item>
     </ion-card>
-      <ion-label>Nombre</ion-label>
-      <ion-input mode="ios" formControlName="nombre"></ion-input>
-    <ion-item>
-      <ion-label>RFC</ion-label>
-      <ion-input mode="ios" formControlName="rfc"></ion-input>
+    <ion-card mode="ios">
+    <ion-item lines="none">
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input mode="ios" placeholder="Ingrese su Nombre" formControlName="nombre"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label>Monedas</ion-label>
+    <ion-item lines="none">
+      <ion-label position="floating">RFC</ion-label>
+      <ion-input mode="ios" placeholder="Ingrese su RFC" formControlName="rfc"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="floating">Seleccionar Moneda</ion-label>
       <ionic-selectable
         [items]="monedaCombo"
         itemValueField="id"
+        closeButtonText="Cancelar"
         itemTextField="descripcion"
         [canSearch]="true"
         (onChange)="parche($event)">
       </ionic-selectable>
     </ion-item>
-    <ion-item>
-      <ion-label>Nombre De Contacto</ion-label>
-      <ion-input mode="ios" formControlName="nombreDeContacto"></ion-input>
+    <ion-item lines="none">
+      <ion-label position="floating">Nombre De Contacto</ion-label>
+      <ion-input mode="ios" placeholder="Ingrese su N. de Contacto" formControlName="nombreDeContacto"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label>Correo Electronico</ion-label>
-      <ion-input mode="ios" formControlName="correoElectronico"></ion-input>
+    <ion-item lines="none">
+      <ion-label position="floating">Correo Electronico</ion-label>
+      <ion-input mode="ios" placeholder="Ingrese su Correo Electronico" formControlName="correoElectronico"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label>Direccion</ion-label>
-      <ion-input mode="ios" formControlName="direccion"></ion-input>
+    <ion-item lines="none">
+      <ion-label position="floating">Direccion</ion-label>
+      <ion-input mode="ios" placeholder="Ingrese su Direccion" formControlName="direccion"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label>Telefono</ion-label>
-      <ion-input mode="ios" formControlName="telefono"></ion-input>
+    <ion-item lines="none">
+      <ion-label position="floating">Telefono</ion-label>
+      <ion-input mode="ios" placeholder="Ingrese su Telefono" formControlName="telefono"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label>Estatus</ion-label>
-      <ion-input mode="ios" formControlName="estatus"></ion-input>
+    <ion-item lines="none">
+      <ion-label position="floating">Estatus</ion-label>
+      <ion-input mode="ios" placeholder="Ingrese su Estatus" formControlName="estatus"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label>Tipo</ion-label>
-      <ion-input mode="ios" formControlName="tipo"></ion-input>
+    <ion-item lines="none">
+      <ion-label position="floating">Tipo</ion-label>
+      <ion-input mode="ios" placeholder="Ingrese su Tipo" formControlName="tipo"></ion-input>
     </ion-item>
+    </ion-card>
     <ion-row>
       <ion-col size="6">
         <ion-button expand="block" mode="ios" color="danger" fill="outline" (click)="cancel()">

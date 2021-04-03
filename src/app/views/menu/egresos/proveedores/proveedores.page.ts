@@ -36,7 +36,7 @@ export class ProveedoresPage implements OnInit {
     this.restService.create<_proveedores>().subscribe(async datos => {
       const modal = await this.modalCtrl.create({
         component: FormProveedoresPage,
-        cssClass: 'modal-wrapper-terminos',
+        cssClass: 'modal-wrapper',
         componentProps: {
           data: {title: 'Agregar ' + this.title, data: datos}
         }
@@ -94,7 +94,7 @@ export class ProveedoresPage implements OnInit {
     this.restService.edit<_proveedores>(item.id).subscribe(async datos => {
       const modal = await this.modalCtrl.create({
         component: FormProveedoresPage,
-        cssClass: 'modal-wrapper-terminos',
+        cssClass: 'modal-wrapper',
         componentProps: {
           data: {title: this.title + ' Folio: ' + item.id, data: datos}
         }
