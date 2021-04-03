@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {_clientes} from '../../../../interfaces/data.interface';
+import {_clientes, _terminosDeCobro} from '../../../../interfaces/data.interface';
 import {Subscription} from 'rxjs';
 import {RestService} from '../../../../services/rest.service';
 import {AlertController, ModalController} from '@ionic/angular';
 import {FormClientesPage} from './form-clientes/form-clientes.page';
 import {DialogService} from '../../../../services/dialog.service';
+import {FormTerminosDeCobroPage} from "../terminos-de-cobro/form-terminos-de-cobro/form-terminos-de-cobro.page";
 
 @Component({
   selector: 'app-clientes',
@@ -17,6 +18,7 @@ export class ClientesPage implements OnInit {
   public listadoDeBusqueda: _clientes[];
   public busqueda: _clientes;
   public getRowsSub: Subscription;
+  public title = 'Clientes';
   public subtitle = 'Cliente';
   constructor(private restService: RestService,
               private modalCtrl: ModalController, public alertController: AlertController, private dialogService: DialogService) { }
@@ -80,6 +82,24 @@ export class ClientesPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  edit(item: _clientes) {
+    this.restService.edit<_clientes>(item.id).subscribe(async datos => {
+      const modal = await this.modalCtrl.create({
+        component: FormClientesPage,
+        cssClass: 'modal-wrapper-terminos',
+        componentProps: {
+          data: {title: this.title + ' Folio: ' + item.id, data: datos}
+        }
+      });
+      await modal.present();
+      const {data} = await modal.onDidDismiss();
+      if ({data}) {
+        this.restService.update<_clientes>(item.id, {data}.data).subscribe(() =>
+          this.dialogService.presentToast('¡¡ ' + this.subtitle + ' Actualizado Exitosamente!!', 3.5, false).then(() => this.index()));
+      }
+    });
   }
 
 }
