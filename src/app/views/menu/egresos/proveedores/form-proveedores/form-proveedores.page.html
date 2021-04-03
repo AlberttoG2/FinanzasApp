@@ -1,33 +1,68 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title text-capitalize> {{ nombre }} -- {{ pais }} </ion-title>
+    <ion-title title="{{ data.title }}"></ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <form [formGroup]="formulario" (ngSubmit)="SalirConDatos()">
+    <ion-card hidden>
+      <ion-item>
+        <ion-label position="stacked"><b>Folio</b></ion-label>
+        <ion-input type="number" placeholder="Folio" formControlName="id"></ion-input>
+      </ion-item>
+    </ion-card>
+      <ion-label>Nombre</ion-label>
+      <ion-input mode="ios" formControlName="nombre"></ion-input>
     <ion-item>
-      <ion-label>Start Date</ion-label>
-      <ion-datetime mode="ios" formControlName="fecha" placeholder="Select Date"></ion-datetime>
+      <ion-label>RFC</ion-label>
+      <ion-input mode="ios" formControlName="rfc"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Razones Sociales</ion-label>
-      <!--    ngModel => Variable en la que se guarda el item seleccionado-->
-      <!--    items => Listado de items-->
-      <!--    itemValueField => este es el valor que toma en cuenta-->
-      <!--    itemTextField => este es el valor que se muestra cuando seleccionamos algo-->
-      <!--    canSearch => permite la busqueda en el componente-->
-      <!--    onChange => aqui se ejecuta un metodo cuando ocurre un cambio dentro del componente-->
+      <ion-label>Monedas</ion-label>
       <ionic-selectable
-        [items]="razonSocialCombo"
+        [items]="monedaCombo"
         itemValueField="id"
         itemTextField="descripcion"
         [canSearch]="true"
-        (onChange)="parchar($event)">
+        (onChange)="parche($event)">
       </ionic-selectable>
     </ion-item>
-    <ion-button color="primary" expand="full" type="submit">
-      Salir
-    </ion-button>
+    <ion-item>
+      <ion-label>Nombre De Contacto</ion-label>
+      <ion-input mode="ios" formControlName="nombreDeContacto"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Correo Electronico</ion-label>
+      <ion-input mode="ios" formControlName="correoElectronico"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Direccion</ion-label>
+      <ion-input mode="ios" formControlName="direccion"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Telefono</ion-label>
+      <ion-input mode="ios" formControlName="telefono"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Estatus</ion-label>
+      <ion-input mode="ios" formControlName="estatus"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Tipo</ion-label>
+      <ion-input mode="ios" formControlName="tipo"></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col size="6">
+        <ion-button expand="block" mode="ios" color="danger" fill="outline" (click)="cancel()">
+          Cancelar
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="block" mode="ios" [disabled]="formulario.invalid" (click)="save()">
+          Guardar
+        </ion-button>
+      </ion-col>
+    </ion-row>
   </form>
 </ion-content>
