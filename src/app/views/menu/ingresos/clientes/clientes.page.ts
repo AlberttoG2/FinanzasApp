@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {_clientes, _terminosDeCobro} from '../../../../interfaces/data.interface';
+import {_clientes} from '../../../../interfaces/data.interface';
 import {Subscription} from 'rxjs';
 import {RestService} from '../../../../services/rest.service';
 import {AlertController, ModalController} from '@ionic/angular';
 import {FormClientesPage} from './form-clientes/form-clientes.page';
 import {DialogService} from '../../../../services/dialog.service';
-import {FormTerminosDeCobroPage} from "../terminos-de-cobro/form-terminos-de-cobro/form-terminos-de-cobro.page";
 
 @Component({
   selector: 'app-clientes',
@@ -28,17 +27,22 @@ export class ClientesPage implements OnInit {
     this.restService.initService(this.domain);
     this.index();
   }
-  async abrirModal() {
-    const modal = await this.modalCtrl.create({
-      component: FormClientesPage,
-      componentProps: {
-        nombre: 'Alberto',
-        pais: 'Suecia'
+  async add() {
+    this.restService.create<_clientes>().subscribe(async datos => {
+      const modal = await this.modalCtrl.create({
+        component: FormClientesPage,
+        cssClass: 'modal-wrapper-terminos',
+        componentProps: {
+          data: {title: 'Agregar ' + this.title, data: datos}
+        }
+      });
+      await modal.present();
+      const {data} = await modal.onDidDismiss();
+      if ({data}) {
+        this.restService.save<_clientes>({data}.data).subscribe(() =>
+          this.dialogService.presentToast('¡¡ ' + this.subtitle + ' Creado Exitosamente!!', 3.5, false).then(() => this.index()));
       }
     });
-    await modal.present();
-    const { data } = await modal.onDidDismiss();
-    console.log('Retorno', data);
   }
   index(){
     this.getRowsSub = this.restService.index<_clientes[]>().subscribe(respuesta => {
@@ -100,6 +104,13 @@ export class ClientesPage implements OnInit {
           this.dialogService.presentToast('¡¡ ' + this.subtitle + ' Actualizado Exitosamente!!', 3.5, false).then(() => this.index()));
       }
     });
+  }
+
+  doRefresh(event: any) {
+    setTimeout(() => {
+      this.index();
+      event.target.complete();
+    }, 500);
   }
 
 }

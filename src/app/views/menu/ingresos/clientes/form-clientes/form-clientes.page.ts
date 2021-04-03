@@ -14,8 +14,7 @@ export class FormClientesPage implements OnInit {
 
   public razonSocialCombo: _combo[];
   public monedaCombo: _combo[];
-  @Input() nombre;
-  @Input() pais;
+  @Input() data;
   public formulario: FormGroup;
   submit: any;
   constructor( private modalCtrl: ModalController, private restService: RestService ) { }

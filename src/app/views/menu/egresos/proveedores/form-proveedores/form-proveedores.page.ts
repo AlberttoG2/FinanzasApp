@@ -1,11 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ModalController} from '@ionic/angular';
-import {_combo} from '../../../../../interfaces/data.interface';
-import {RestService} from '../../../../../services/rest.service';
-import {IonicSelectableComponent} from 'ionic-selectable';
-import {FormGroup, Validators} from '@angular/forms';
+ import {Component, Input, OnInit} from '@angular/core';
+ import {ModalController} from '@ionic/angular';
+ import {_combo} from '../../../../../interfaces/data.interface';
+ import {RestService} from '../../../../../services/rest.service';
+ import {IonicSelectableComponent} from 'ionic-selectable';
+ import {FormGroup, Validators} from '@angular/forms';
 
-@Component({
+ @Component({
   selector: 'app-form-proveedores',
   templateUrl: './form-proveedores.page.html',
   styleUrls: ['./form-proveedores.page.scss'],

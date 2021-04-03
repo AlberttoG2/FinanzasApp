@@ -1,9 +1,16 @@
 <app-header title="Clientes"></app-header>
 
 <ion-content fullscreen class="ion-padding">
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="abrirModal()">
-    <ion-fab-button size="small">
-      <ion-icon name="add"></ion-icon>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="chevron-down-outline" pullingText="Pull to refresh" refreshingSpinner="circles"
+                           refreshingText="Actualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="add()">
+    <ion-fab-button size="small" color="success">
+      <ion-icon name="create"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
