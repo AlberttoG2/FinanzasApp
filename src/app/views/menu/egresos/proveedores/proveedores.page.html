@@ -1,10 +1,58 @@
 <app-header title="Proveedores"></app-header>
 
 <ion-content>
-<ion-button expand="full" (click)="abrirModal()">
-  Modal
-</ion-button>
-  <p>
-    Alberto - Suecia
-  </p>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="chevron-down-outline" pullingText="Pull to refresh" refreshingSpinner="circles"  refreshingText="Actualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="add()">
+    <ion-fab-button size="small" color="success">
+      <ion-icon name="create"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-item>
+    <ion-searchbar mode="ios" (ionInput)="filterList($event)"></ion-searchbar>
+  </ion-item>
+  <ion-content>
+    <div *ngFor="let p of listadoDeBusqueda" [class.active]="p.open" detail="false">
+      <ion-item button (click)="p.open = !p.open">
+        <ion-icon mode="ios" name="business-outline" slot="start"></ion-icon>
+        <ion-icon slot="end" name="chevron-down-circle-outline" *ngIf="!p.open"></ion-icon>
+        <ion-icon slot="end" name="chevron-up-circle-outline" *ngIf="p.open"></ion-icon>
+        <ion-label>{{p.rfc}}</ion-label>
+      </ion-item>
+      <ion-list *ngif="p.open">
+        <ion-item>
+          <ion-card>
+            <ion-item>
+              <ion-icon name="business-outline" slot="start"></ion-icon>
+              <ion-label>ID: {{p.id}}</ion-label>
+              <ion-buttons slot="end">
+
+                <ion-button fill="icon-only" (click)="edit(p)">
+                  <ion-icon name="pencil" color="primary" slot="start"></ion-icon>
+                </ion-button>
+
+                <ion-button fill="icon-only" (click)="delete(p)">
+                  <ion-icon name="trash" color="danger" slot="start"></ion-icon>
+                </ion-button>
+
+              </ion-buttons>
+            </ion-item>
+            <ion-card-content>
+              <p>Nombre: <b>{{p.nombre}}</b></p>
+              <p>RFC: <b>{{p.rfc}}</b></p>
+              <p>Moneda: <b>{{p.moneda}}</b></p>
+              <p>N. de Contacto: <b>{{p.nombreDeContacto}}</b></p>
+              <p>Correo: <b>{{p.correoElectronico}}</b></p>
+              <p>Dirección: <b>{{p.direccion}}</b></p>
+              <p>Telefono: <b>{{p.telefono}}</b></p>
+              <p>Estatus: <b>{{p.estatus}}</b></p>
+              <p>Tipo: <b>{{p.tipo}}</b></p>
+            </ion-card-content>
+          </ion-card>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
 </ion-content>

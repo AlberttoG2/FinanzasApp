@@ -13,12 +13,10 @@
       <ion-icon name="create"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
 <ion-item>
   <ion-searchbar mode="ios" (ionInput)="filterList($event)"></ion-searchbar>
 </ion-item>
 <ion-content>
-
   <div *ngFor="let p of listadoDeBusqueda" [class.active]="p.open" detail="false">
     <ion-item button (click)="p.open = !p.open" >
       <ion-icon mode="ios" name="business-outline" slot="start"></ion-icon>

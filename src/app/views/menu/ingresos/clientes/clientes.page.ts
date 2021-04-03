@@ -63,7 +63,6 @@ export class ClientesPage implements OnInit {
       }
     });
   }
-
   async delete(item: _clientes) {
     const alert = await this.alertController.create({
       mode: 'ios',
@@ -85,7 +84,6 @@ export class ClientesPage implements OnInit {
         }
       ]
     });
-
     await alert.present();
   }
 
@@ -114,5 +112,4 @@ export class ClientesPage implements OnInit {
       event.target.complete();
     }, 500);
   }
-
 }
