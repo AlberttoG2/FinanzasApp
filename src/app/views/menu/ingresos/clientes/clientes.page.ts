@@ -38,7 +38,8 @@ export class ClientesPage implements OnInit {
       });
       await modal.present();
       const {data} = await modal.onDidDismiss();
-      if ({data}) {
+      // tslint:disable-next-line:triple-equals
+      if ({data}.data != undefined) {
         this.restService.save<_clientes>({data}.data).subscribe(() =>
           this.dialogService.presentToast('¡¡ ' + this.subtitle + ' Creado Exitosamente!!', 3.5, false).then(() => this.index()));
       }
@@ -99,7 +100,8 @@ export class ClientesPage implements OnInit {
       });
       await modal.present();
       const {data} = await modal.onDidDismiss();
-      if ({data}) {
+      // tslint:disable-next-line:triple-equals
+      if ({data}.data != undefined) {
         this.restService.update<_clientes>(item.id, {data}.data).subscribe(() =>
           this.dialogService.presentToast('¡¡ ' + this.subtitle + ' Actualizado Exitosamente!!', 3.5, false).then(() => this.index()));
       }
