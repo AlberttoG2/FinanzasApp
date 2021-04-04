@@ -165,7 +165,7 @@ export class _instruccionesDePago {
 // tslint:disable-next-line:class-name
 export class _terminosDePago {
   id: number;
-  proveedor: _proveedores;
+  proveedor: string;
   fechaDeFactura: Date;
   fechaDeRecepcion: Date;
   diasDeCredito: number;
