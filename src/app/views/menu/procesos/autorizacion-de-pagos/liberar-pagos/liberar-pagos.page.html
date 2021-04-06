@@ -2,4 +2,52 @@
 
 <ion-content>
 
+  <ion-card mode="ios">
+    <form [formGroup]="busqueda">
+      <ion-item>
+        <ion-label position="floating"><b>Fecha de Busqueda</b></ion-label>
+        <ion-datetime mode="ios" placeholder="Selecionar fecha" cancel-text="Cancelar" formControlName="fecha"
+                      done-text="Confirmar"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating"><b>Tipo de Operación</b></ion-label>
+        <ion-select placeholder="Selecionar Tipo de Operación" formControlName="tipo">
+          <ion-select-option value="PagoProveedores">Pago a Proveedor</ion-select-option>
+          <ion-select-option value="Intercompanias">Intercompañia</ion-select-option>
+          <ion-select-option value="Traspasos">Traspaso</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button expand="full" mode="ios" [disabled]="busqueda.invalid" (click)="cargarOperaciones()" shape="round" class="ion-margin" color="dark">Buscar Operaciones
+        <ion-icon name="search" slot="end"></ion-icon>
+      </ion-button>
+    </form>
+  </ion-card>
+
+  <ion-card mode="ios" *ngFor="let c of cards">
+    <ion-item color="dark">
+      <ion-icon name="briefcase-outline" slot="start"></ion-icon>
+      <b>Pago a Proveedor</b>
+      <ion-buttons slot="end">
+        <ion-button fill="clear">
+          <ion-icon name="alert-circle-outline" color="primary" slot="icon-only"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear">
+          <ion-icon name="checkmark-done-circle-outline" color="success" slot="icon-only"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear">
+          <ion-icon color="danger" name="close-circle-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+    <ion-card-content>
+      <p>Folio: <b>{{c.folio}}</b></p>
+      <p>Fecha compromiso: <b>{{c.fechaCompromiso | date: 'dd-MM-yyyy'}}</b></p>
+      <p>Razon Social: <b>{{c.razonSocial}}</b></p>
+      <p>Beneficiario: <b>{{c.beneficiario}}</b></p>
+      <p>Monto: <b>{{c.monto | currency: 'USD'}}</b></p>
+      <p>Fecha de Pago: <b>{{c.fechaPago | date: 'dd-MM-yyyy'}}</b></p>
+      <p>Estatus: <b>{{c.estatus}}</b></p>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
