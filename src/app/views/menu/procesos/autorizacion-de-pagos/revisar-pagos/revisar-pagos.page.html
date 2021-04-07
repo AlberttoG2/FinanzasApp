@@ -21,6 +21,9 @@
       <ion-button expand="full" mode="ios" [disabled]="busqueda.invalid" (click)="cargarOperaciones()" shape="round" class="ion-margin" color="dark">Buscar Operaciones
         <ion-icon name="search" slot="end"></ion-icon>
       </ion-button>
+      <ion-item>
+        <ion-searchbar mode="ios" (ionInput)="filterList($event)"></ion-searchbar>
+      </ion-item>
     </form>
   </ion-card>
 

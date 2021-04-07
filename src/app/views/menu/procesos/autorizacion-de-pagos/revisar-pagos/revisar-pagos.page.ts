@@ -10,6 +10,8 @@ import {GlobalService} from '../../../../../services/global.service';
   styleUrls: ['./revisar-pagos.page.scss'],
 })
 export class RevisarPagosPage implements OnInit {
+  public listado: _autorizacionDePagos[];
+  public listadoDeBusqueda: _autorizacionDePagos[];
   busqueda: FormGroup;
   public cards: _autorizacionDePagos[];
   constructor(private restService: RestService, private globalService: GlobalService) { }
@@ -34,6 +36,19 @@ export class RevisarPagosPage implements OnInit {
     this.restService.index<_autorizacionDePagos[]>({operacion: this.busqueda.get('tipo').value,
       estado: '-',
       fecha: new Date(this.busqueda.get('fecha').value)}, 'cargarPagos').subscribe(respuesta => this.cards = respuesta);
+  }
+
+  async filterList(evt) {
+    this.cards = this.listado;
+    const searchTerm = evt.srcElement.value;
+    if (!searchTerm) {
+      return;
+    }
+    this.cards = this.cards.filter(currentFood => {
+      if (currentFood.folio && searchTerm) {
+        return(currentFood.folio.toLocaleLowerCase().indexOf(searchTerm.toLocaleString()) > -1);
+      }
+    });
   }
 
 }
