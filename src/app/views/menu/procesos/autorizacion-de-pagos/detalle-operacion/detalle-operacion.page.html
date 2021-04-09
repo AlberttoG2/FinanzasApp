@@ -1,15 +1,93 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>detalle-operacion</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
-</ion-content>
+<header class="modalHeader">
+  <div class="font-weight-bold p-t-5 p-l-10 font-17">Detalle de la Operacion</div>
+</header>
+<br>
+<ion-card>
+    <ion-item>
+      <ion-label>Tipo de Operacion: <b>{{data.operacion}}</b></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Folio: <b>{{data.folio}}</b></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Razon Social: <b>{{data.razonSocial}}</b></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Monto: <b>{{data.monto}}</b></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Fecha: <b>{{data.fecha}}</b></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Estatus: <b>{{data.estatus}}</b></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Concepto: <b>{{data.concepto}}</b></ion-label>
+    </ion-item>
+    <ion-item *ngIf="data.operacion == 'Intercompanias'">
+      <ion-label>Tipo de Operacion: <b>{{data.tipoDeOperacion}}</b></ion-label>
+    </ion-item>
+    <ion-item *ngIf="data.operacion == 'Intercompanias'">
+      <ion-label>Linea de Credito: <b>{{data.lineaDeCredito}}</b></ion-label>
+    </ion-item>
+    <ion-item *ngIf="data.operacion == 'Intercompanias'">
+      <ion-label>Monto de la Linea: <b>{{data.montoLinea}}</b></ion-label>
+    </ion-item>
+    <ion-item *ngIf="data.operacion == 'Intercompanias'">
+      <ion-label>Saldo Insoluto: <b>{{data.saldoInsoluto}}</b></ion-label>
+    </ion-item>
+    <ion-item *ngIf="data.operacion == 'Intercompanias'">
+      <ion-label>Monto Disponible: <b>{{data.montoDisponible}}</b></ion-label>
+    </ion-item>
+    <ion-item *ngIf="data.operacion !== 'Intercompanias'">
+      <ion-label>Cuenta de cargo: <b>{{data.cuentaCargo}}</b></ion-label>
+    </ion-item>
+    <ion-item *ngIf="data.operacion !== 'Intercompanias'">
+      <ion-label>Beneficiario: <b>{{data.beneficiario}}</b></ion-label>
+    </ion-item>
+    <ion-item *ngIf="data.operacion !== 'Intercompanias'">
+      <ion-label>Cuenta de Abono: <b>{{data.cuentaAbono}}</b></ion-label>
+    </ion-item>
+    <ion-item *ngIf="data.operacion !== 'Intercompanias'">
+      <ion-label>Tipo de Transaccion: <b>{{data.tipoTransaccion}}</b></ion-label>
+    </ion-item>
+    <ion-item *ngIf="data.operacion == 'PagoProveedores'">
+      <ion-label>Banco del Cliente: <b>{{data.bancoCliente}}</b></ion-label>
+    </ion-item>
+    <ion-item *ngIf="data.operacion == 'PagoProveedores'">
+      <ion-label>Moneda del Cliente: <b>{{data.monedaCliente}}</b></ion-label>
+    </ion-item>
+    <ion-item *ngIf="data.operacion == 'PagoProveedores'">
+      <ion-label>Alias: <b>{{data.alias}}</b></ion-label>
+    </ion-item>
+    <ion-item *ngIf="data.operacion == 'PagoProveedores'">
+      <ion-label>Banco del Proveedor: <b>{{data.bancoProveedor}}</b></ion-label>
+    </ion-item>
+    <ion-item *ngIf="data.operacion == 'PagoProveedores'">
+      <ion-label>Convenio: <b>{{data.convenio}}</b></ion-label>
+    </ion-item>
+    <ion-item *ngIf="data.operacion == 'PagoProveedores'">
+      <ion-label>Referencia: <b>{{data.referencia}}</b></ion-label>
+    </ion-item>
+    <ion-item *ngIf="data.operacion == 'Traspasos'">
+      <ion-label>Banco emisor: <b>{{data.bancoEmisor}}</b></ion-label>
+    </ion-item>
+    <ion-item *ngIf="data.operacion == 'Traspasos'">
+      <ion-label>Modena del emisor: <b>{{data.monedaEmisor}}</b></ion-label>
+    </ion-item>
+    <ion-item *ngIf="data.operacion == 'Traspasos'">
+      <ion-label>Alias Emisor: <b>{{data.aliasEmisor}}</b></ion-label>
+    </ion-item>
+    <ion-item *ngIf="data.operacion == 'Traspasos'">
+      <ion-label>Banco Receptor: <b>{{data.bancoReceptor}}</b></ion-label>
+    </ion-item>
+    <ion-item *ngIf="data.operacion == 'Traspasos'">
+      <ion-label>Alais Receptor: <b>{{data.aliasReceptor}}</b></ion-label>
+    </ion-item>
+</ion-card>
 
 <footer>
-  <ion-button expand="block" (click)="exit()">
+  <ion-button (click)="exit()">
     Guardar
   </ion-button>
 </footer>
