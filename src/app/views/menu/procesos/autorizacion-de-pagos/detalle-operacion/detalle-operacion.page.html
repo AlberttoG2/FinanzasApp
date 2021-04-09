@@ -1,89 +1,37 @@
 <header class="modalHeader">
-  <div class="font-weight-bold p-t-5 p-l-10 font-17">Detalle de la Operacion</div>
+  Detalle de la Operacion
 </header>
 <br>
 <ion-card>
-    <ion-item>
-      <ion-label>Tipo de Operacion: <b>{{data.operacion}}</b></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Folio: <b>{{data.folio}}</b></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Razon Social: <b>{{data.razonSocial}}</b></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Monto: <b>{{data.monto}}</b></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Fecha: <b>{{data.fecha}}</b></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Estatus: <b>{{data.estatus}}</b></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Concepto: <b>{{data.concepto}}</b></ion-label>
-    </ion-item>
-    <ion-item *ngIf="data.operacion == 'Intercompanias'">
-      <ion-label>Tipo de Operacion: <b>{{data.tipoDeOperacion}}</b></ion-label>
-    </ion-item>
-    <ion-item *ngIf="data.operacion == 'Intercompanias'">
-      <ion-label>Linea de Credito: <b>{{data.lineaDeCredito}}</b></ion-label>
-    </ion-item>
-    <ion-item *ngIf="data.operacion == 'Intercompanias'">
-      <ion-label>Monto de la Linea: <b>{{data.montoLinea}}</b></ion-label>
-    </ion-item>
-    <ion-item *ngIf="data.operacion == 'Intercompanias'">
-      <ion-label>Saldo Insoluto: <b>{{data.saldoInsoluto}}</b></ion-label>
-    </ion-item>
-    <ion-item *ngIf="data.operacion == 'Intercompanias'">
-      <ion-label>Monto Disponible: <b>{{data.montoDisponible}}</b></ion-label>
-    </ion-item>
-    <ion-item *ngIf="data.operacion !== 'Intercompanias'">
-      <ion-label>Cuenta de cargo: <b>{{data.cuentaCargo}}</b></ion-label>
-    </ion-item>
-    <ion-item *ngIf="data.operacion !== 'Intercompanias'">
-      <ion-label>Beneficiario: <b>{{data.beneficiario}}</b></ion-label>
-    </ion-item>
-    <ion-item *ngIf="data.operacion !== 'Intercompanias'">
-      <ion-label>Cuenta de Abono: <b>{{data.cuentaAbono}}</b></ion-label>
-    </ion-item>
-    <ion-item *ngIf="data.operacion !== 'Intercompanias'">
-      <ion-label>Tipo de Transaccion: <b>{{data.tipoTransaccion}}</b></ion-label>
-    </ion-item>
-    <ion-item *ngIf="data.operacion == 'PagoProveedores'">
-      <ion-label>Banco del Cliente: <b>{{data.bancoCliente}}</b></ion-label>
-    </ion-item>
-    <ion-item *ngIf="data.operacion == 'PagoProveedores'">
-      <ion-label>Moneda del Cliente: <b>{{data.monedaCliente}}</b></ion-label>
-    </ion-item>
-    <ion-item *ngIf="data.operacion == 'PagoProveedores'">
-      <ion-label>Alias: <b>{{data.alias}}</b></ion-label>
-    </ion-item>
-    <ion-item *ngIf="data.operacion == 'PagoProveedores'">
-      <ion-label>Banco del Proveedor: <b>{{data.bancoProveedor}}</b></ion-label>
-    </ion-item>
-    <ion-item *ngIf="data.operacion == 'PagoProveedores'">
-      <ion-label>Convenio: <b>{{data.convenio}}</b></ion-label>
-    </ion-item>
-    <ion-item *ngIf="data.operacion == 'PagoProveedores'">
-      <ion-label>Referencia: <b>{{data.referencia}}</b></ion-label>
-    </ion-item>
-    <ion-item *ngIf="data.operacion == 'Traspasos'">
-      <ion-label>Banco emisor: <b>{{data.bancoEmisor}}</b></ion-label>
-    </ion-item>
-    <ion-item *ngIf="data.operacion == 'Traspasos'">
-      <ion-label>Modena del emisor: <b>{{data.monedaEmisor}}</b></ion-label>
-    </ion-item>
-    <ion-item *ngIf="data.operacion == 'Traspasos'">
-      <ion-label>Alias Emisor: <b>{{data.aliasEmisor}}</b></ion-label>
-    </ion-item>
-    <ion-item *ngIf="data.operacion == 'Traspasos'">
-      <ion-label>Banco Receptor: <b>{{data.bancoReceptor}}</b></ion-label>
-    </ion-item>
-    <ion-item *ngIf="data.operacion == 'Traspasos'">
-      <ion-label>Alais Receptor: <b>{{data.aliasReceptor}}</b></ion-label>
-    </ion-item>
+  <ion-card-content>
+    <P>Tipo de Operacion: <b>{{data.operacion}}</b></P>
+    <P>Folio: <b>{{data.folio}}</b></P>
+    <P>Razon Social: <b>{{data.razonSocial}}</b></P>
+    <P>Monto: <b>{{data.monto}}</b></P>
+    <P>Fecha: <b>{{data.fecha}}</b></P>
+    <P>Estatus: <b>{{data.estatus}}</b></P>
+    <P>Concepto: <b>{{data.concepto}}</b></P>
+    <P>Tipo de Operacion: <b>{{data.tipoDeOperacion}}</b></P>
+    <P>Linea de Credito: <b>{{data.lineaDeCredito}}</b></P>
+    <P>Monto de la Linea: <b>{{data.montoLinea}}</b></P>
+    <P>Saldo Insoluto: <b>{{data.saldoInsoluto}}</b></P>
+    <P>Monto Disponible: <b>{{data.montoDisponible}}</b></P>
+    <P>Cuenta de cargo: <b>{{data.cuentaCargo}}</b></P>
+    <P>Beneficiario: <b>{{data.beneficiario}}</b></P>
+    <P>Cuenta de Abono: <b>{{data.cuentaAbono}}</b></P>
+    <P>Tipo de Transaccion: <b>{{data.tipoTransaccion}}</b></P>
+    <P>Banco del Cliente: <b>{{data.bancoCliente}}</b></P>
+    <P>Moneda del Cliente: <b>{{data.monedaCliente}}</b></P>
+    <P>Alias: <b>{{data.alias}}</b></P>
+    <P>Banco del Proveedor: <b>{{data.bancoProveedor}}</b></P>
+    <P>Convenio: <b>{{data.convenio}}</b></P>
+    <P>Referencia: <b>{{data.referencia}}</b></P>
+    <P>Banco emisor: <b>{{data.bancoEmisor}}</b></P>
+    <P>Modena del emisor: <b>{{data.monedaEmisor}}</b></P>
+    <P>Alias Emisor: <b>{{data.aliasEmisor}}</b></P>
+    <P>Banco Receptor: <b>{{data.bancoReceptor}}</b></P>
+    <P>Alais Receptor: <b>{{data.aliasReceptor}}</b></P>
+  </ion-card-content>
 </ion-card>
 
 <footer>
