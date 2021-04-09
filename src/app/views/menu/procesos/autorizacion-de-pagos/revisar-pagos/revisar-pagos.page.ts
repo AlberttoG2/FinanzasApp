@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RestService} from '../../../../../services/rest.service';
-import {_autorizacionDePagos} from '../../../../../interfaces/data.interface';
+import {_autorizacionDePagos, _clientes} from '../../../../../interfaces/data.interface';
 import {FormGroup, Validators} from '@angular/forms';
 import {GlobalService} from '../../../../../services/global.service';
+import {AlertController, ModalController} from '@ionic/angular';
+import {DetalleOperacionPage} from '../detalle-operacion/detalle-operacion.page';
+import {DialogService} from '../../../../../services/dialog.service';
 
 @Component({
   selector: 'app-revisar-pagos',
@@ -14,7 +17,13 @@ export class RevisarPagosPage implements OnInit {
   public listadoDeBusqueda: _autorizacionDePagos[];
   busqueda: FormGroup;
   public cards: _autorizacionDePagos[];
-  constructor(private restService: RestService, private globalService: GlobalService) { }
+
+  constructor(private restService: RestService,
+              private globalService: GlobalService,
+              public modalController: ModalController,
+              public alertController: AlertController,
+              private dialogService: DialogService) {
+  }
 
   ngOnInit() {
     this.restService.initService('AutorizacionDePagos');
@@ -24,13 +33,20 @@ export class RevisarPagosPage implements OnInit {
     });
   }
 
-  cargarOperaciones(){
-    this.restService.index<_autorizacionDePagos[]>({operacion: this.busqueda.get('tipo').value,
+  cargarOperaciones() {
+    // const opts = this.globalService.getHttpOptions();
+    // opts['params'] = {
+    //   operacion: this.busqueda.get('tipo'),
+    //   estado: '-',
+    //   fecha: this.busqueda.get('fecha')
+    // };
+    // const dia = new Date(this.busqueda.get('fecha').value);
+    // console.log(dia);
+    this.restService.index<_autorizacionDePagos[]>({
+      operacion: this.busqueda.get('tipo').value,
       estado: '-',
-      fecha: new Date(this.busqueda.get('fecha').value)}, 'cargarPagos').subscribe(respuesta => {
-      this.cards = respuesta;
-      this.listado = respuesta;
-    });
+      fecha: new Date(this.busqueda.get('fecha').value)
+    }, 'cargarPagos').subscribe(respuesta => this.cards = respuesta);
   }
 
   async filterList(evt) {
@@ -41,9 +57,55 @@ export class RevisarPagosPage implements OnInit {
     }
     this.cards = this.cards.filter(currentFood => {
       if (currentFood.folio && searchTerm) {
-        return(currentFood.folio.toString().toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
+        return (currentFood.folio.toLocaleLowerCase().indexOf(searchTerm.toLocaleString()) > -1);
       }
     });
   }
 
+  async showInfo() {
+    const modal = await this.modalController.create({
+      component: DetalleOperacionPage
+    });
+    return await modal.present();
+  }
+
+  async aceptar() {
+    const alert = await this.alertController.create({
+      mode: 'ios',
+      header: 'FinanzasIQ',
+      subHeader: 'Advertencia',
+      message: '¿Aceptar operacion?',
+      buttons: [{
+        text: 'Cancelar',
+        role: 'cancel',
+        handler: () => this.dialogService.presentToast('Operacion cancelada', 3, false)
+      }, {
+        text: 'Confirmar',
+        handler: () => {
+        }
+      }
+      ]
+    });
+    await alert.present();
+  }
+
+  async cancelar() {
+    const alert = await this.alertController.create({
+      mode: 'ios',
+      header: 'FinanzasIQ',
+      subHeader: 'Advertencia',
+      message: '¿Cancelar operacion?',
+      buttons: [{
+        text: 'Cancelar',
+        role: 'cancel',
+        handler: () => this.dialogService.presentToast('Operacion cancelada', 3, false)
+      }, {
+        text: 'Confirmar',
+        handler: () => {
+        }
+      }
+      ]
+    });
+    await alert.present();
+  }
 }

@@ -33,13 +33,13 @@
       <ion-icon name="briefcase-outline" slot="start"></ion-icon>
       <b>Pago a Proveedor</b>
       <ion-buttons slot="end">
-        <ion-button fill="clear">
+        <ion-button fill="clear" (click)="showInfo()">
           <ion-icon name="alert-circle-outline" color="primary" slot="icon-only"></ion-icon>
         </ion-button>
-        <ion-button fill="clear">
+        <ion-button fill="clear" (click)="aceptar()">
           <ion-icon name="checkmark-done-circle-outline" color="success" slot="icon-only"></ion-icon>
         </ion-button>
-        <ion-button fill="clear">
+        <ion-button fill="clear" (click)="cancelar()">
           <ion-icon color="danger" name="close-circle-outline" slot="icon-only"></ion-icon>
         </ion-button>
       </ion-buttons>
