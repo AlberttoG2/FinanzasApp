@@ -15,7 +15,6 @@ export class ClientesPage implements OnInit {
   public domain = 'Clientes';
   public listado: _clientes[];
   public listadoDeBusqueda: _clientes[];
-  public busqueda: _clientes;
   public getRowsSub: Subscription;
   public title = 'Clientes';
   public subtitle = 'Cliente';

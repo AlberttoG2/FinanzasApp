@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {RestService} from '../../../../../services/rest.service';
-import {_autorizacionDePagos, _clientes} from '../../../../../interfaces/data.interface';
+import {_autorizacionDePagos, _operacion} from '../../../../../interfaces/data.interface';
 import {FormGroup, Validators} from '@angular/forms';
 import {GlobalService} from '../../../../../services/global.service';
 import {AlertController, ModalController} from '@ionic/angular';
 import {DetalleOperacionPage} from '../detalle-operacion/detalle-operacion.page';
 import {DialogService} from '../../../../../services/dialog.service';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-revisar-pagos',
@@ -22,7 +23,8 @@ export class RevisarPagosPage implements OnInit {
               private globalService: GlobalService,
               public modalController: ModalController,
               public alertController: AlertController,
-              private dialogService: DialogService) {
+              private dialogService: DialogService,
+              private http: HttpClient) {
   }
 
   ngOnInit() {
@@ -60,6 +62,24 @@ export class RevisarPagosPage implements OnInit {
       if (currentFood.folio && searchTerm) {
         return(currentFood.folio.toString().toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
       }
+    });
+  }
+
+  editCall(row) {
+    // tslint:disable-next-line:prefer-const
+    let info: _operacion;
+    const opts = this.globalService.getHttpOptions();
+    opts['params'] = {operacion: row.operacion, folio: row.folio};
+    this.http.get<_operacion>(this.globalService.Url + 'AutorizacionDePagos/' + 'cargarOperacion', opts).subscribe(async result => {
+      // const dialogRef = this.dialog.open(OperacionesComponent, { data: result[0] });
+      // dialogRef.afterClosed().subscribe();
+      const modal = await this.modalController.create({
+        component: DetalleOperacionPage,
+        componentProps: {
+          data: {data: result[0]}
+        }
+      });
+      await modal.present();
     });
   }
 

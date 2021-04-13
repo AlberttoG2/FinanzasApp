@@ -1,7 +1,8 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {_operacion} from '../../../../../interfaces/data.interface';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {RestService} from "../../../../../services/rest.service";
 
 
 @Component({
@@ -11,8 +12,9 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 })
 export class DetalleOperacionPage implements OnInit {
 
-  @Inject(MAT_DIALOG_DATA)public data: _operacion;
-  constructor(public modalController: ModalController) {
+  @Input() public data: _operacion[];
+  constructor(private restService: RestService,
+              public modalController: ModalController) {
   }
 
   ngOnInit() {

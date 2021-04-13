@@ -3,34 +3,34 @@
 </header>
 <br>
 <ion-card>
-  <ion-card-content>
-    <P>Tipo de Operacion: <b>{{data.operacion}}</b></P>
-    <P>Folio: <b>{{data.folio}}</b></P>
-    <P>Razon Social: <b>{{data.razonSocial}}</b></P>
-    <P>Monto: <b>{{data.monto}}</b></P>
-    <P>Fecha: <b>{{data.fecha}}</b></P>
-    <P>Estatus: <b>{{data.estatus}}</b></P>
-    <P>Concepto: <b>{{data.concepto}}</b></P>
-    <P>Tipo de Operacion: <b>{{data.tipoDeOperacion}}</b></P>
-    <P>Linea de Credito: <b>{{data.lineaDeCredito}}</b></P>
-    <P>Monto de la Linea: <b>{{data.montoLinea}}</b></P>
-    <P>Saldo Insoluto: <b>{{data.saldoInsoluto}}</b></P>
-    <P>Monto Disponible: <b>{{data.montoDisponible}}</b></P>
-    <P>Cuenta de cargo: <b>{{data.cuentaCargo}}</b></P>
-    <P>Beneficiario: <b>{{data.beneficiario}}</b></P>
-    <P>Cuenta de Abono: <b>{{data.cuentaAbono}}</b></P>
-    <P>Tipo de Transaccion: <b>{{data.tipoTransaccion}}</b></P>
-    <P>Banco del Cliente: <b>{{data.bancoCliente}}</b></P>
-    <P>Moneda del Cliente: <b>{{data.monedaCliente}}</b></P>
-    <P>Alias: <b>{{data.alias}}</b></P>
-    <P>Banco del Proveedor: <b>{{data.bancoProveedor}}</b></P>
-    <P>Convenio: <b>{{data.convenio}}</b></P>
-    <P>Referencia: <b>{{data.referencia}}</b></P>
-    <P>Banco emisor: <b>{{data.bancoEmisor}}</b></P>
-    <P>Modena del emisor: <b>{{data.monedaEmisor}}</b></P>
-    <P>Alias Emisor: <b>{{data.aliasEmisor}}</b></P>
-    <P>Banco Receptor: <b>{{data.bancoReceptor}}</b></P>
-    <P>Alais Receptor: <b>{{data.aliasReceptor}}</b></P>
+  <ion-card-content *ngFor="let c of data">
+    <p>Tipo de Operacion: <b>{{c.operacion}}</b></p>
+    <p>Folio: <b>{{c.folio}}</b></p>
+    <p>Razon Social: <b>{{c.razonSocial}}</b></p>
+    <p>Monto: <b>{{c.monto}}</b></p>
+    <p>Fecha: <b>{{c.fecha}}</b></p>
+    <p>Estatus: <b>{{c.estatus}}</b></p>
+    <p>Concepto: <b>{{c.concepto}}</b></p>
+    <p>Tipo de Operacion: <b>{{c.tipoDeOperacion}}</b></p>
+    <p>Linea de Credito: <b>{{c.lineaDeCredito}}</b></p>
+    <p>Monto de la Linea: <b>{{c.montoLinea}}</b></p>
+    <p>Saldo Insoluto: <b>{{c.saldoInsoluto}}</b></p>
+    <p>Monto Disponible: <b>{{c.montoDisponible}}</b></p>
+    <p>Cuenta de cargo: <b>{{c.cuentaCargo}}</b></p>
+    <p>Beneficiario: <b>{{c.beneficiario}}</b></p>
+    <p>Cuenta de Abono: <b>{{c.cuentaAbono}}</b></p>
+    <p>Tipo de Transaccion: <b>{{c.tipoTransaccion}}</b></p>
+    <p>Banco del Cliente: <b>{{c.bancoCliente}}</b></p>
+    <p>Moneda del Cliente: <b>{{c.monedaCliente}}</b></p>
+    <p>Alias: <b>{{c.alias}}</b></p>
+    <p>Banco del Proveedor: <b>{{c.bancoProveedor}}</b></p>
+    <p>Convenio: <b>{{c.convenio}}</b></p>
+    <p>Referencia: <b>{{c.referencia}}</b></p>
+    <p>Banco emisor: <b>{{c.bancoEmisor}}</b></p>
+    <p>Modena del emisor: <b>{{c.monedaEmisor}}</b></p>
+    <p>Alias Emisor: <b>{{c.aliasEmisor}}</b></p>
+    <p>Banco Receptor: <b>{{c.bancoReceptor}}</b></p>
+    <p>Alais Receptor: <b>{{c.aliasReceptor}}</b></p>
   </ion-card-content>
 </ion-card>
 
