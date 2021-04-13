@@ -42,11 +42,12 @@ export class RevisarPagosPage implements OnInit {
     // };
     // const dia = new Date(this.busqueda.get('fecha').value);
     // console.log(dia);
-    this.restService.index<_autorizacionDePagos[]>({
-      operacion: this.busqueda.get('tipo').value,
+    this.restService.index<_autorizacionDePagos[]>({operacion: this.busqueda.get('tipo').value,
       estado: '-',
-      fecha: new Date(this.busqueda.get('fecha').value)
-    }, 'cargarPagos').subscribe(respuesta => this.cards = respuesta);
+      fecha: new Date(this.busqueda.get('fecha').value)}, 'cargarPagos').subscribe(respuesta => {
+      this.cards = respuesta;
+      this.listado = respuesta;
+    });
   }
 
   async filterList(evt) {
@@ -57,7 +58,7 @@ export class RevisarPagosPage implements OnInit {
     }
     this.cards = this.cards.filter(currentFood => {
       if (currentFood.folio && searchTerm) {
-        return (currentFood.folio.toLocaleLowerCase().indexOf(searchTerm.toLocaleString()) > -1);
+        return(currentFood.folio.toString().toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
       }
     });
   }
@@ -107,5 +108,11 @@ export class RevisarPagosPage implements OnInit {
       ]
     });
     await alert.present();
+  }
+
+  regresar() {
+    this.cards = null;
+    this.listado = null;
+    this.ngOnInit();
   }
 }

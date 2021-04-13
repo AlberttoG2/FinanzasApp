@@ -1,7 +1,21 @@
-<app-header title="Estatus de Pagos"></app-header>
+<ion-header>
+  <ion-toolbar mode="ios" color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end" *ngIf="cards">
+      <ion-button fill="clear" (click)="regresar()">
+        <ion-icon name="refresh-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>Estatus De Pagos</ion-title>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
-  <ion-card mode="ios">
+  <ion-card mode="ios" *ngIf="!cards">
     <form [formGroup]="busqueda">
       <ion-item>
         <ion-label position="floating"><b>Fecha de Busqueda</b></ion-label>
@@ -21,18 +35,24 @@
       </ion-button>
     </form>
   </ion-card>
+
+  <div *ngIf="cards">
+    <ion-item>
+      <ion-searchbar mode="ios" (ionInput)="filterList($event)"></ion-searchbar>
+    </ion-item>
+
   <ion-card mode="ios" *ngFor="let c of cards">
     <ion-item color="dark">
       <ion-icon name="briefcase-outline" slot="start"></ion-icon>
       <b>Pago a Proveedor</b>
       <ion-buttons slot="end">
-        <ion-button fill="clear">
+        <ion-button fill="clear" (click)="showInfo()">
           <ion-icon name="alert-circle-outline" color="primary" slot="icon-only"></ion-icon>
         </ion-button>
-        <ion-button fill="clear">
+        <ion-button fill="clear" (click)="aceptar()">
           <ion-icon name="checkmark-done-circle-outline" color="success" slot="icon-only"></ion-icon>
         </ion-button>
-        <ion-button fill="clear">
+        <ion-button fill="clear" (click)="cancelar()">
           <ion-icon color="danger" name="close-circle-outline" slot="icon-only"></ion-icon>
         </ion-button>
       </ion-buttons>
@@ -47,4 +67,5 @@
       <p>Estatus: <b>{{c.estatus}}</b></p>
     </ion-card-content>
   </ion-card>
+  </div>
 </ion-content>
