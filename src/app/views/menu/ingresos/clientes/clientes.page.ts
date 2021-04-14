@@ -57,7 +57,7 @@ export class ClientesPage implements OnInit {
       return;
     }
     this.listadoDeBusqueda = this.listadoDeBusqueda.filter(currentFood => {
-      if (currentFood.rfc && searchTerm) {
+      if (currentFood && searchTerm) {
         return(currentFood.rfc.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
       }
     });

@@ -956,3 +956,40 @@ export type ChartOptions = {
   labels: any;
   dataLabels: any;
 };
+
+
+// tslint:disable-next-line:class-name
+export class _flujoDeCajaMensualBioethik {
+  anio: number;
+  tipoFE: string;
+  mes: string;
+  ingresos: number;
+  ingresosVentasMaquila: number;
+  ingresosPuntoVentaDistribuidor: number;
+  ingresosVentaDirectaAmazon: number;
+  egresos: number;
+  egresosServiciosGenerales: number;
+  egresosTelefonoComisionesBancarias: number;
+  egresosLogistica: number;
+  egresosPublicidad: number;
+  egresosConsumiblesGenerales: number;
+  egresosNominaAguinaldo: number;
+  egresosCostoProduccionMarcaBioethik: number;
+  egresosViaticos: number;
+  egresosCostoProduccionMaquiladora: number;
+  egresosRentaBodega: number;
+  egresosSistemas: number;
+  egresosCostoVentas: number;
+  capex: number;
+  capexRentaEquipoComputo: number;
+  capexMantenimiento: number;
+  impuestos: number;
+  impuestosIVA: number;
+  impuestosISR: number;
+  impuestosISN: number;
+  financiamiento: number;
+  financiamientoPrestamos: number;
+  financiamientoPagoPrestamos: number;
+  saldoInicial: number;
+  saldoFinal: number;
+}

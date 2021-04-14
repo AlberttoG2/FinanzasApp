@@ -1,6 +1,230 @@
 <app-header title="Dashboard"></app-header>
 
 <ion-content>
+  <ion-card mode="ios">
+      <ion-toolbar color="dark">
+        <ion-title>Flujo de Caja Actual</ion-title>
+      </ion-toolbar>
+<ion-card-content class="ion-padding-horizontal">
+    <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+      <ion-col size="4" class="ion-padding-vertical ion-text-center"><b>Categoria</b></ion-col>
+      <ion-col class="ion-padding-vertical ion-text-center"><b>Proyección</b></ion-col>
+      <ion-col class="ion-padding-vertical ion-text-center"><b>Real</b></ion-col>
+      <ion-col class="ion-padding-vertical ion-text-center"><b>Var($)</b></ion-col>
+      <ion-col size="2" class="ion-padding-vertical ion-text-center"><b>Var(%)</b></ion-col>
+    </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4"><ion-chip color="success">Ingresos</ion-chip></ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.ingresos | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.ingresos | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.ingresos - fcmReal.ingresos | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.ingresos / fcmPrecupuesto.ingresos | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >Ventas Maquila</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.ingresosVentasMaquila | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.ingresosVentasMaquila | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.ingresosVentasMaquila - fcmReal.ingresosVentasMaquila | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.ingresosVentasMaquila / fcmPrecupuesto.ingresosVentasMaquila | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >Punto Venta y Distribuidor</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.ingresosPuntoVentaDistribuidor | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.ingresosPuntoVentaDistribuidor | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.ingresosPuntoVentaDistribuidor - fcmReal.ingresosPuntoVentaDistribuidor | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.ingresosPuntoVentaDistribuidor / fcmPrecupuesto.ingresosPuntoVentaDistribuidor | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >Venta Directa Amazon</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.ingresosVentaDirectaAmazon | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.ingresosVentaDirectaAmazon | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.ingresosVentaDirectaAmazon - fcmReal.ingresosVentaDirectaAmazon | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.ingresosVentaDirectaAmazon / fcmPrecupuesto.ingresosVentaDirectaAmazon | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" ><ion-chip color="danger">Egresos</ion-chip></ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresos | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.egresos | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresos - fcmReal.egresos | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.egresos / fcmPrecupuesto.egresos | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >Servicios generales</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosServiciosGenerales | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.egresosServiciosGenerales | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosServiciosGenerales - fcmReal.egresosServiciosGenerales | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.egresosServiciosGenerales / fcmPrecupuesto.egresosServiciosGenerales | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >Telefono y comisiones bancarias</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosTelefonoComisionesBancarias | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.egresosTelefonoComisionesBancarias | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosTelefonoComisionesBancarias - fcmReal.egresosTelefonoComisionesBancarias | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.egresosTelefonoComisionesBancarias / fcmPrecupuesto.egresosTelefonoComisionesBancarias | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >Logística</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosLogistica | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.egresosLogistica | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosLogistica - fcmReal.egresosLogistica | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.egresosLogistica / fcmPrecupuesto.egresosLogistica | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >Publicidad</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosPublicidad | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.egresosPublicidad | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosPublicidad - fcmReal.egresosPublicidad | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.egresosPublicidad / fcmPrecupuesto.egresosPublicidad | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >Consumibles Generales</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosConsumiblesGenerales | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.egresosConsumiblesGenerales | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosConsumiblesGenerales - fcmReal.egresosConsumiblesGenerales | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.egresosConsumiblesGenerales / fcmPrecupuesto.egresosConsumiblesGenerales | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >Nómina y Aguinaldo</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosNominaAguinaldo | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.egresosNominaAguinaldo | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosNominaAguinaldo - fcmReal.egresosNominaAguinaldo | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.egresosNominaAguinaldo / fcmPrecupuesto.egresosNominaAguinaldo | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >Costo Producción Marca Bioethik</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosCostoProduccionMarcaBioethik | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.egresosCostoProduccionMarcaBioethik | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosCostoProduccionMarcaBioethik - fcmReal.egresosCostoProduccionMarcaBioethik | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.egresosCostoProduccionMarcaBioethik / fcmPrecupuesto.egresosCostoProduccionMarcaBioethik | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >Viaticos</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosViaticos | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.egresosViaticos | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosViaticos - fcmReal.egresosViaticos | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.egresosViaticos / fcmPrecupuesto.egresosViaticos | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >Costo de produccion Maquiladora</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosCostoProduccionMaquiladora | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.egresosCostoProduccionMaquiladora | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosCostoProduccionMaquiladora - fcmReal.egresosCostoProduccionMaquiladora | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.egresosCostoProduccionMaquiladora / fcmPrecupuesto.egresosCostoProduccionMaquiladora | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >Renta de Bodega</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosRentaBodega | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.egresosRentaBodega | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosRentaBodega - fcmReal.egresosRentaBodega | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.egresosRentaBodega / fcmPrecupuesto.egresosRentaBodega | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >Sistemas</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosSistemas | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.egresosSistemas | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosSistemas - fcmReal.egresosSistemas | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.egresosSistemas / fcmPrecupuesto.egresosSistemas | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >Costo de Ventas</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosCostoVentas | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.egresosCostoVentas | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.egresosCostoVentas - fcmReal.egresosCostoVentas | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.egresosCostoVentas / fcmPrecupuesto.egresosCostoVentas | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" ><ion-chip>Capex</ion-chip></ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.capex | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.capex | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.capex - fcmReal.capex | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.capex / fcmPrecupuesto.capex | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >Renta Equipo Cómputo</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.capexRentaEquipoComputo | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.capexRentaEquipoComputo | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.capexRentaEquipoComputo - fcmReal.capexRentaEquipoComputo | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.capexRentaEquipoComputo / fcmPrecupuesto.capexRentaEquipoComputo | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >Mantenimiento</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.capexMantenimiento | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.capexMantenimiento | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.capexMantenimiento - fcmReal.capexMantenimiento | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.capexMantenimiento / fcmPrecupuesto.capexMantenimiento | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" ><ion-chip color="warning">Impuestos</ion-chip></ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.impuestos | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.impuestos | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.impuestos - fcmReal.impuestos | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.impuestos / fcmPrecupuesto.impuestos | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >IVA</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.impuestosIVA | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.impuestosIVA | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.impuestosIVA - fcmReal.impuestosIVA | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.impuestosIVA / fcmPrecupuesto.impuestosIVA | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >ISR</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.impuestosISR | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.impuestosISR | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.impuestosISR - fcmReal.impuestosISR | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.impuestosISR / fcmPrecupuesto.impuestosISR | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >ISN</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.impuestosISN | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.impuestosISN | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.impuestosISN - fcmReal.impuestosISN | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.impuestosISN / fcmPrecupuesto.impuestosISN | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" ><ion-chip>Financiamiento</ion-chip></ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.financiamiento | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.financiamiento | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.financiamiento - fcmReal.financiamiento | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.financiamiento / fcmPrecupuesto.financiamiento | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >Préstamos (+)</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.financiamientoPrestamos | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.financiamientoPrestamos | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.financiamientoPrestamos - fcmReal.financiamientoPrestamos | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.financiamientoPrestamos / fcmPrecupuesto.financiamientoPrestamos | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" >Pago Préstamos (-)</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.financiamientoPagoPrestamos | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.financiamientoPagoPrestamos | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.financiamientoPagoPrestamos - fcmReal.financiamientoPagoPrestamos | currency: 'USD'}}</ion-col>
+                  <ion-col size="2" class="ion-padding ion-text-right">{{fcmReal.financiamientoPagoPrestamos / fcmPrecupuesto.financiamientoPagoPrestamos | percent}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" ><ion-chip color="tertiary">Generacion Cash</ion-chip></ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.ingresos - fcmPrecupuesto.egresos - fcmPrecupuesto.capex - fcmPrecupuesto.impuestos + fcmPrecupuesto.financiamiento | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.ingresos - fcmReal.egresos - fcmReal.capex - fcmReal.impuestos + fcmReal.financiamiento | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{(fcmPrecupuesto.ingresos - fcmPrecupuesto.egresos - fcmPrecupuesto.capex - fcmPrecupuesto.impuestos + fcmPrecupuesto.financiamiento) - (fcmReal.ingresos - fcmReal.egresos - fcmReal.capex - fcmReal.impuestos + fcmReal.financiamiento) | currency: 'USD'}}</ion-col>
+                  <ion-col></ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" ><ion-chip color="primary">Saldo Inicial</ion-chip></ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.saldoInicial | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.saldoInicial | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.saldoInicial - fcmReal.saldoInicial | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right"></ion-col>
+      </ion-row>
+      <ion-row *ngIf="fcmPrecupuesto && fcmReal">
+                  <ion-col size="4" ><ion-chip>Saldo Final</ion-chip></ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmPrecupuesto.saldoInicial + (fcmPrecupuesto.ingresos - fcmPrecupuesto.egresos - fcmPrecupuesto.capex - fcmPrecupuesto.impuestos + fcmPrecupuesto.financiamiento) | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{fcmReal.saldoInicial + (fcmReal.ingresos - fcmReal.egresos - fcmReal.capex - fcmReal.impuestos + fcmReal.financiamiento) | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right">{{(fcmPrecupuesto.saldoInicial + (fcmPrecupuesto.ingresos - fcmPrecupuesto.egresos - fcmPrecupuesto.capex - fcmPrecupuesto.impuestos + fcmPrecupuesto.financiamiento)) - (fcmReal.saldoInicial + (fcmReal.ingresos - fcmReal.egresos - fcmReal.capex - fcmReal.impuestos + fcmReal.financiamiento)) | currency: 'USD'}}</ion-col>
+                  <ion-col class="ion-padding ion-text-right"></ion-col>
+      </ion-row>
+</ion-card-content>
+  </ion-card>
   <ion-card class="ion-padding" mode="ios">
     <apx-chart
       [series]="chartOptions.series"

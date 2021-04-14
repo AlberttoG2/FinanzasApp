@@ -14,7 +14,7 @@ import {environment} from '../environments/environment';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ComponentsModule} from './components/components.module';
 import {NgApexchartsModule} from 'ng-apexcharts';
-
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -24,7 +24,7 @@ import {NgApexchartsModule} from 'ng-apexcharts';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: 'API_URL', useValue: environment.serverUrl},
     { provide: HTTP_INTERCEPTORS, useClass: HttpCalIInterceptor, multi: true},
-    GlobalService, RestService
+    GlobalService, RestService, ScreenOrientation
     ],
   bootstrap: [AppComponent],
 })
