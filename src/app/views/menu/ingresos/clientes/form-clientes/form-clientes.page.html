@@ -1,19 +1,15 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title title="{{data.title}}"></ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-subheader title="{{data.title}}"></app-subheader>
 
 <ion-content>
   <form [formGroup]="formulario" (ngSubmit)="SalirConDatos()">
 
-    <ion-item>
-      <ion-label>ID</ion-label>
+    <ion-item hidden>
+      <ion-label position="floating">ID</ion-label>
       <ion-input mode="ios" formControlName="id"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Razones Sociales</ion-label>
+      <ion-label position="floating">Razón Social</ion-label>
       <ionic-selectable
         [items]="razonSocialCombo"
         itemValueField="id"
@@ -24,17 +20,17 @@
     </ion-item>
 
     <ion-item>
-      <ion-label>Nombre</ion-label>
+      <ion-label position="floating">Nombre</ion-label>
       <ion-input mode="ios" formControlName="nombre"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>RFC</ion-label>
+      <ion-label position="floating">RFC</ion-label>
       <ion-input mode="ios" formControlName="rfc"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Monedas</ion-label>
+      <ion-label position="floating">Moneda</ion-label>
       <ionic-selectable
         [items]="monedaCombo"
         itemValueField="id"
@@ -45,32 +41,32 @@
     </ion-item>
 
     <ion-item>
-      <ion-label>Nombre De Contacto</ion-label>
+      <ion-label position="floating">Nombre De Contacto</ion-label>
       <ion-input mode="ios" formControlName="nombreDeContacto"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Correo Electronico</ion-label>
+      <ion-label position="floating">Correo Electronico</ion-label>
       <ion-input mode="ios" formControlName="correoElectronico"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Direccion</ion-label>
+      <ion-label position="floating">Direccion</ion-label>
       <ion-input mode="ios" formControlName="direccion"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Telefono</ion-label>
+      <ion-label position="floating">Telefono</ion-label>
       <ion-input mode="ios" formControlName="telefono"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Contacto de Cobranza</ion-label>
+      <ion-label position="floating">Contacto de Cobranza</ion-label>
       <ion-input mode="ios" formControlName="contactoDeCobranza"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Referencia</ion-label>
+      <ion-label position="floating">Referencia</ion-label>
       <ion-input mode="ios" formControlName="referencia"></ion-input>
     </ion-item>
     <ion-row>

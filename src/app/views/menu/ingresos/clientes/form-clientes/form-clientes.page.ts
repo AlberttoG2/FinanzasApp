@@ -23,17 +23,17 @@ export class FormClientesPage implements OnInit {
     this.restService.combo<_combo[]> ({id: 'RazonSocial'}, 'comboController').subscribe(result => this.razonSocialCombo = result);
     this.restService.combo<_combo[]> ( {id: 'Divisa'}, 'comboController').subscribe( result => this.monedaCombo = result);
     this.formulario = this.restService.buildForm({
-      id: ['', Validators.required],
-      razonSocial: ['', Validators.required],
-      nombre: ['', Validators.required],
-      rfc: ['', Validators.required],
-      moneda: ['', Validators.required],
-      nombreDeContacto: ['', Validators.required],
-      correoElectronico: ['', Validators.required],
-      direccion: ['', Validators.required],
-      telefono: ['', Validators.required],
-      contactoDeCobranza: ['', Validators.required],
-      referencia: ['', Validators.required]
+      id: [this.data.data.id ? this.data.data.id : '', Validators.required],
+      razonSocial: [this.data.data.razonSocial ? this.data.data.razonSocial.id : '', Validators.required],
+      nombre: [this.data.data.nombre ? this.data.data.nombre : '', Validators.required],
+      rfc: [this.data.data.rfc ? this.data.data.rfc : '', Validators.required],
+      moneda: [this.data.data.moneda ? this.data.data.moneda.id : '', Validators.required],
+      nombreDeContacto: [this.data.data.nombreDeContacto ? this.data.data.nombreDeContacto : '', Validators.required],
+      correoElectronico: [this.data.data.correoElectronico ? this.data.data.correoElectronico : '', Validators.required],
+      direccion: [this.data.data.direccion ? this.data.data.direccion : '', Validators.required],
+      telefono: [this.data.data.telefono ? this.data.data.telefono : '', Validators.required],
+      contactoDeCobranza: [this.data.data.contactoDeCobranza ? this.data.data.contactoDeCobranza : '', Validators.required],
+      referencia: [this.data.data.referencia ? this.data.data.referencia : '', Validators.required]
     });
   }
   SalirConDatos(){

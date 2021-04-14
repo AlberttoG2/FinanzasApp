@@ -10,6 +10,7 @@ import { ClientesPage } from './clientes.page';
 import {ComponentsModule} from '../../../../components/components.module';
 import {IonicSelectableModule} from 'ionic-selectable';
 import {FormClientesPage} from './form-clientes/form-clientes.page';
+import {FormClientesPageModule} from './form-clientes/form-clientes.module';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {FormClientesPage} from './form-clientes/form-clientes.page';
         IonicModule,
         ClientesPageRoutingModule,
         ComponentsModule,
+      FormClientesPageModule,
         IonicSelectableModule
     ],
   declarations: [ClientesPage]

@@ -1,41 +1,43 @@
-<header class="modalHeader">
-  Detalle de la Operacion
-</header>
-<br>
-<ion-card>
-  <ion-card-content *ngFor="let c of data">
-    <p>Tipo de Operacion: <b>{{c.operacion}}</b></p>
-    <p>Folio: <b>{{c.folio}}</b></p>
-    <p>Razon Social: <b>{{c.razonSocial}}</b></p>
-    <p>Monto: <b>{{c.monto}}</b></p>
-    <p>Fecha: <b>{{c.fecha}}</b></p>
-    <p>Estatus: <b>{{c.estatus}}</b></p>
-    <p>Concepto: <b>{{c.concepto}}</b></p>
-    <p>Tipo de Operacion: <b>{{c.tipoDeOperacion}}</b></p>
-    <p>Linea de Credito: <b>{{c.lineaDeCredito}}</b></p>
-    <p>Monto de la Linea: <b>{{c.montoLinea}}</b></p>
-    <p>Saldo Insoluto: <b>{{c.saldoInsoluto}}</b></p>
-    <p>Monto Disponible: <b>{{c.montoDisponible}}</b></p>
-    <p>Cuenta de cargo: <b>{{c.cuentaCargo}}</b></p>
-    <p>Beneficiario: <b>{{c.beneficiario}}</b></p>
-    <p>Cuenta de Abono: <b>{{c.cuentaAbono}}</b></p>
-    <p>Tipo de Transaccion: <b>{{c.tipoTransaccion}}</b></p>
-    <p>Banco del Cliente: <b>{{c.bancoCliente}}</b></p>
-    <p>Moneda del Cliente: <b>{{c.monedaCliente}}</b></p>
-    <p>Alias: <b>{{c.alias}}</b></p>
-    <p>Banco del Proveedor: <b>{{c.bancoProveedor}}</b></p>
-    <p>Convenio: <b>{{c.convenio}}</b></p>
-    <p>Referencia: <b>{{c.referencia}}</b></p>
-    <p>Banco emisor: <b>{{c.bancoEmisor}}</b></p>
-    <p>Modena del emisor: <b>{{c.monedaEmisor}}</b></p>
-    <p>Alias Emisor: <b>{{c.aliasEmisor}}</b></p>
-    <p>Banco Receptor: <b>{{c.bancoReceptor}}</b></p>
-    <p>Alais Receptor: <b>{{c.aliasReceptor}}</b></p>
-  </ion-card-content>
-</ion-card>
-
+<app-subheader title="Detalle de la Operacion"></app-subheader>
+<ion-content>
+  <ion-card class="ion-padding">
+    <p *ngIf="data.operacion">Tipo de Operacion: <b>{{data.operacion}}</b></p>
+    <p *ngIf="data.folio">Folio: <b>{{data.folio}}</b></p>
+    <p *ngIf="data.razonSocial">Razon Social: <b>{{data.razonSocial}}</b></p>
+    <p *ngIf="data.monto">Monto: <b>{{data.monto}}</b></p>
+    <p *ngIf="data.fecha">Fecha: <b>{{data.fecha}}</b></p>
+    <p *ngIf="data.estatus">Estatus: <b>{{data.estatus}}</b></p>
+    <p *ngIf="data.concepto">Concepto: <b>{{data.concepto}}</b></p>
+    <p *ngIf="data.tipoDeOperacion">Tipo de Operacion: <b>{{data.tipoDeOperacion}}</b></p>
+    <p *ngIf="data.lineaDeCredito">Linea de Credito: <b>{{data.lineaDeCredito}}</b></p>
+    <p *ngIf="data.montoLinea">Monto de la Linea: <b>{{data.montoLinea}}</b></p>
+    <p *ngIf="data.saldoInsoluto">Saldo Insoluto: <b>{{data.saldoInsoluto}}</b></p>
+    <p *ngIf="data.montoDisponible">Monto Disponible: <b>{{data.montoDisponible}}</b></p>
+    <p *ngIf="data.cuentaCargo">Cuenta de cargo: <b>{{data.cuentaCargo}}</b></p>
+    <p *ngIf="data.beneficiario">Beneficiario: <b>{{data.beneficiario}}</b></p>
+    <p *ngIf="data.cuentaAbono">Cuenta de Abono: <b>{{data.cuentaAbono}}</b></p>
+    <p *ngIf="data.tipoTransaccion">Tipo de Transaccion: <b>{{data.tipoTransaccion}}</b></p>
+    <p *ngIf="data.bancoCliente">Banco del Cliente: <b>{{data.bancoCliente}}</b></p>
+    <p *ngIf="data.monedaCliente">Moneda del Cliente: <b>{{data.monedaCliente}}</b></p>
+    <p *ngIf="data.alias">Alias: <b>{{data.alias}}</b></p>
+    <p *ngIf="data.bancoProveedor">Banco del Proveedor: <b>{{data.bancoProveedor}}</b></p>
+    <p *ngIf="data.convenio">Convenio: <b>{{data.convenio}}</b></p>
+    <p *ngIf="data.referencia">Referencia: <b>{{data.referencia}}</b></p>
+    <p *ngIf="data.bancoEmisor">Banco emisor: <b>{{data.bancoEmisor}}</b></p>
+    <p *ngIf="data.monedaEmisor">Modena del emisor: <b>{{data.monedaEmisor}}</b></p>
+    <p *ngIf="data.aliasEmisor">Alias Emisor: <b>{{data.aliasEmisor}}</b></p>
+    <p *ngIf="data.bancoReceptor">Banco Receptor: <b>{{data.bancoReceptor}}</b></p>
+    <p *ngIf="data.aliasReceptor">Alais Receptor: <b>{{data.aliasReceptor}}</b></p>
+  </ion-card>
+</ion-content>
 <footer>
-  <ion-button (click)="exit()">
-    Guardar
-  </ion-button>
+  <ion-row>
+    <ion-col size="2"></ion-col>
+    <ion-col>
+      <ion-button expand="block" (click)="exit()" color="dark">
+        Aceptar
+      </ion-button>
+    </ion-col>
+    <ion-col size="2"></ion-col>
+  </ion-row>
 </footer>

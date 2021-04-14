@@ -16,39 +16,26 @@ import {HttpClient} from '@angular/common/http';
 export class RevisarPagosPage implements OnInit {
   public listado: _autorizacionDePagos[];
   public listadoDeBusqueda: _autorizacionDePagos[];
+  tipoOperacion;
   busqueda: FormGroup;
+  public fecha: Date = new Date();
   public cards: _autorizacionDePagos[];
 
-  constructor(private restService: RestService,
-              private globalService: GlobalService,
-              public modalController: ModalController,
-              public alertController: AlertController,
-              private dialogService: DialogService,
-              private http: HttpClient) {
+  constructor(private restService: RestService, private globalService: GlobalService, public modalController: ModalController,
+              public alertController: AlertController, private dialogService: DialogService, private http: HttpClient) {
   }
 
   ngOnInit() {
     this.restService.initService('AutorizacionDePagos');
-    this.busqueda = this.restService.buildForm({
-      fecha: ['', Validators.required],
-      tipo: ['', Validators.required]
-    });
+    this.busqueda = this.restService.buildForm({ fecha: ['', Validators.required], tipo: ['', Validators.required] });
   }
 
   cargarOperaciones() {
-    // const opts = this.globalService.getHttpOptions();
-    // opts['params'] = {
-    //   operacion: this.busqueda.get('tipo'),
-    //   estado: '-',
-    //   fecha: this.busqueda.get('fecha')
-    // };
-    // const dia = new Date(this.busqueda.get('fecha').value);
-    // console.log(dia);
     this.restService.index<_autorizacionDePagos[]>({operacion: this.busqueda.get('tipo').value,
-      estado: '-',
-      fecha: new Date(this.busqueda.get('fecha').value)}, 'cargarPagos').subscribe(respuesta => {
+      estado: '-', fecha: new Date(this.busqueda.get('fecha').value)}, 'cargarPagos').subscribe(respuesta => {
       this.cards = respuesta;
       this.listado = respuesta;
+      this.tipoOperacion = this.busqueda.get('tipo').value;
     });
   }
 
@@ -59,73 +46,55 @@ export class RevisarPagosPage implements OnInit {
       return;
     }
     this.cards = this.cards.filter(currentFood => {
-      if (currentFood.folio && searchTerm) {
-        return(currentFood.folio.toString().toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
-      }
+      if (currentFood.folio && searchTerm) { return(currentFood.folio.toString().toLowerCase().indexOf(searchTerm.toLowerCase()) > -1); }
     });
   }
 
-  editCall(row) {
-    // tslint:disable-next-line:prefer-const
-    let info: _operacion;
+  detalles(row) {
     const opts = this.globalService.getHttpOptions();
     opts['params'] = {operacion: row.operacion, folio: row.folio};
     this.http.get<_operacion>(this.globalService.Url + 'AutorizacionDePagos/' + 'cargarOperacion', opts).subscribe(async result => {
       // const dialogRef = this.dialog.open(OperacionesComponent, { data: result[0] });
       // dialogRef.afterClosed().subscribe();
       const modal = await this.modalController.create({
-        component: DetalleOperacionPage,
-        componentProps: {
-          data: {data: result[0]}
-        }
+        component: DetalleOperacionPage, componentProps: { data:  result[0] }
       });
       await modal.present();
     });
   }
 
-  async showInfo() {
-    const modal = await this.modalController.create({
-      component: DetalleOperacionPage
-    });
-    return await modal.present();
-  }
-
-  async aceptar() {
+  async aceptar(c: _autorizacionDePagos) {
     const alert = await this.alertController.create({
-      mode: 'ios',
-      header: 'FinanzasIQ',
-      subHeader: 'Advertencia',
-      message: '¿Aceptar operacion?',
-      buttons: [{
-        text: 'Cancelar',
-        role: 'cancel',
-        handler: () => this.dialogService.presentToast('Operacion cancelada', 3, false)
-      }, {
+      mode: 'ios', header: 'FinanzasIQ', subHeader: 'Autorizacion de Pagos',
+      message: 'Desea marcar como Revisada la operacion con folio: ' + c.folio, buttons: [{
+        text: 'Cancelar', role: 'cancel',
+        handler: () => this.dialogService.presentToast('Operacion Abortada', 3, false) }, {
         text: 'Confirmar',
         handler: () => {
-        }
-      }
-      ]
+          const opts = this.globalService.getHttpOptions();
+          opts['params'] = {operacion: this.tipoOperacion, folio: c.folio, estatus: 'Revisado', operaciones: '-',
+            formaLiquidacion: 1, cuentaOrdenante: 1, fecha: this.fecha};
+          // tslint:disable-next-line:max-line-length
+          this.http.get<any>(this.globalService.Url + 'AutorizacionDePagos/cambiarEstado', opts).subscribe(
+            () => this.cargarOperaciones()
+          );
+        }}]
     });
     await alert.present();
   }
 
-  async cancelar() {
+  async cancelar(c: _autorizacionDePagos) {
     const alert = await this.alertController.create({
-      mode: 'ios',
-      header: 'FinanzasIQ',
-      subHeader: 'Advertencia',
-      message: '¿Cancelar operacion?',
-      buttons: [{
-        text: 'Cancelar',
-        role: 'cancel',
-        handler: () => this.dialogService.presentToast('Operacion cancelada', 3, false)
-      }, {
-        text: 'Confirmar',
-        handler: () => {
-        }
-      }
-      ]
+      mode: 'ios', header: 'FinanzasIQ', subHeader: 'Autorizacion de Pagos',
+      message: 'Desea marcar como Cancelada la operacion con folio: ' + c.folio,
+      buttons: [{ text: 'Cancelar', role: 'cancel',
+        handler: () => this.dialogService.presentToast('Operacion Abortada', 3, false) }, {
+        text: 'Confirmar', handler: () => {
+          const opts = this.globalService.getHttpOptions();
+          opts['params'] = {operacion: this.tipoOperacion, folio: c.folio, estatus: 'Cancelada', operaciones: '-',
+            formaLiquidacion: 1, cuentaOrdenante: 1, fecha: this.fecha};
+          this.http.get<any>(this.globalService.Url + 'AutorizacionDePagos/cambiarEstado', opts).subscribe(() => this.cargarOperaciones());
+        }}]
     });
     await alert.present();
   }
