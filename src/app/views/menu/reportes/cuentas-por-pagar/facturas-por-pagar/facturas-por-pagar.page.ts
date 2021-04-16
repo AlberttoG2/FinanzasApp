@@ -12,4 +12,6 @@ export class FacturasPorPagarPage implements OnInit {
   ngOnInit() {
   }
 
+  regresar() {
+  }
 }

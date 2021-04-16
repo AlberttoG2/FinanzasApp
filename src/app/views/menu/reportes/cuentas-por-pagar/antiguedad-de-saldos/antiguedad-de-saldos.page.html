@@ -1,5 +1,70 @@
-<app-header title="Antigüedad de Saldos"></app-header>
+<ion-header>
+  <ion-toolbar mode="ios" color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end" *ngIf="cards">
+      <ion-button fill="clear" (click)="regresar()">
+        <ion-icon name="refresh-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>Antiguedad de Saldos</ion-title>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
 
+  <ion-card mode="ios" *ngIf="!cards">
+    <form [formGroup]="busqueda">
+      <ion-item>
+        <ion-label position="floating"><b>Fecha</b></ion-label>
+        <ion-datetime mode="ios" placeholder="Selecionar fecha" cancel-text="Cancelar" formControlName="fecha"
+                      done-text="Confirmar"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating"><b>Razon Social</b></ion-label>
+        <ion-select placeholder="Selecionar Razon Social" formControlName="razonSocial">
+        </ion-select>
+      </ion-item>
+      <ion-button expand="full" mode="ios" [disabled]="busqueda.invalid" (click)="cargarOperaciones()" shape="round" class="ion-margin" color="dark">Buscar
+        <ion-icon name="search" slot="end"></ion-icon>
+      </ion-button>
+    </form>
+  </ion-card>
+
+  <ion-card mode="ios">
+    <ion-card-header color="dark" class="ion-no-padding">
+      <ion-row>
+        <ion-col class="ion-text-center"><b>ID Proveedor</b></ion-col>
+        <ion-col class="ion-text-center"><b>Saldo total</b></ion-col>
+        <ion-col class="ion-text-center"><b>Saldo Vigente</b></ion-col>
+        <ion-col class="ion-text-center"><b>Saldo Vencido</b></ion-col>
+        <ion-col class="ion-text-center"><b>1-30 Días</b></ion-col>
+        <ion-col class="ion-text-center"><b>31-60 Días</b></ion-col>
+        <ion-col class="ion-text-center"><b>61-90 Días</b></ion-col>
+        <!--        <ion-col class="ion-text-center"><b>91-180 Días</b></ion-col>-->
+        <!--        <ion-col class="ion-text-center"><b>181-360 Días</b></ion-col>-->
+        <!--        <ion-col class="ion-text-center"><b>+361 Días</b></ion-col>-->
+      </ion-row>
+    </ion-card-header>
+    <ion-row *ngFor="let f of listadoDeBusqueda">
+      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.idProveedor}}</b></ion-col>
+      <ion-col class="ion-text-right ion-padding-vertical"><b>{{f.saldoTotal | currency: 'USD'}}</b></ion-col>
+      <ion-col class="ion-text-right ion-padding-vertical"><b>{{f.saldoVigente | currency: 'USD'}}</b></ion-col>
+      <ion-col class="ion-text-right ion-padding-vertical"><b>{{f.saldoVencido | currency: 'USD'}}</b></ion-col>
+      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.unMesAtraso}}</b></ion-col>
+      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.dosMesesAtraso}}</b></ion-col>
+      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.tresMesesAtraso}}</b></ion-col>
+      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.seisMesesAtraso}}</b></ion-col>
+      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.anioAtraso}}</b></ion-col>
+      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.masAnioAtraso}}</b></ion-col>
+      <ion-col class="ion-text-center">
+        <ion-button fill="clear" size="small">
+          <ion-icon name="navigate-outline"  color="primary" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
 </ion-content>
