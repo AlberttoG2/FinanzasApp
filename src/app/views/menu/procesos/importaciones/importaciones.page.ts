@@ -33,9 +33,6 @@ export class ImportacionesPage implements OnInit {
     this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
   }
   ngOnInit() {
-    // console.log(this.screenOrientation.type); // logs the current orientation, example: 'landscape'
-
-// set to landscape
     this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
     this.restService.combo<_combo[]>({id: 'RazonSocial'}, 'comboController').subscribe(result =>
       this.razonSocialCombo = result);
@@ -136,13 +133,6 @@ export class ImportacionesPage implements OnInit {
         }]
     });
     await alert.present();
-  }
-
-  doRefresh(event: any) {
-    setTimeout(() => {
-      this.index();
-      event.target.complete();
-    }, 500);
   }
 
   reset(){

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ScreenOrientation} from '@ionic-native/screen-orientation/ngx';
+import {_recepcionFacturas} from '../../../../interfaces/data.interface';
+import {Subscription} from 'rxjs';
+import {RestService} from '../../../../services/rest.service';
 
 @Component({
   selector: 'app-propuesta-de-pagos',
@@ -7,8 +10,13 @@ import {ScreenOrientation} from '@ionic-native/screen-orientation/ngx';
   styleUrls: ['./propuesta-de-pagos.page.scss'],
 })
 export class PropuestaDePagosPage implements OnInit {
-
-  constructor(private screenOrientation: ScreenOrientation) { }
+  public domain = 'RecepcionFacturas';
+  public listado: _recepcionFacturas[];
+  public listadoDeBusqueda: _recepcionFacturas[];
+  public getRowsSub: Subscription;
+  public title = 'Clientes';
+  public subtitle = 'Cliente';
+  constructor(private screenOrientation: ScreenOrientation, private restService: RestService) { }
 
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnDestroy(){
@@ -16,6 +24,13 @@ export class PropuestaDePagosPage implements OnInit {
   }
   ngOnInit() {
     this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+    this.restService.initService(this.domain);
+    this.index();
   }
-
+  index(){
+    this.getRowsSub = this.restService.index<_recepcionFacturas[]>({}, 'propuestaPagos').subscribe(respuesta => {
+      this.listado = respuesta;
+      this.listadoDeBusqueda = respuesta;
+    });
+  }
 }

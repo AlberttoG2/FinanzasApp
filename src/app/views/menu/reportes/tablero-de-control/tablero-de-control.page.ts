@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ScreenOrientation} from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-tablero-de-control',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableroDeControlPage implements OnInit {
 
-  constructor() { }
+  constructor(private screenOrientation: ScreenOrientation) { }
 
+  // tslint:disable-next-line:use-lifecycle-interface
+  ngOnDestroy(){
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+  }
   ngOnInit() {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
   }
 
 }

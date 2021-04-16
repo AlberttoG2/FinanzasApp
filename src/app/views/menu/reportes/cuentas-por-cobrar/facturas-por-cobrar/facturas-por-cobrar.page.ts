@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {_cuentasPorCobrar, _facturasXcobrar} from '../../../../../interfaces/data.interface';
 import {FormGroup} from '@angular/forms';
+import {ScreenOrientation} from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-facturas-por-cobrar',
@@ -12,9 +13,14 @@ export class FacturasPorCobrarPage implements OnInit {
   cards: _facturasXcobrar[];
   busqueda: FormGroup;
 
-  constructor() { }
+  constructor(private screenOrientation: ScreenOrientation) { }
 
+  // tslint:disable-next-line:use-lifecycle-interface
+  ngOnDestroy(){
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+  }
   ngOnInit() {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
   }
 
   regresar() {

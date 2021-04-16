@@ -5,21 +5,21 @@
     <ion-card-header color="dark" class="ion-no-padding">
       <ion-row>
         <ion-col class="ion-text-center"><b>ID Documento</b></ion-col>
+<!--        <ion-col class="ion-text-center"><b>Folio</b></ion-col>-->
         <ion-col class="ion-text-center"><b>Proveedor</b></ion-col>
         <ion-col class="ion-text-center"><b>Importe</b></ion-col>
         <ion-col class="ion-text-center"><b>IVA</b></ion-col>
-        <ion-col class="ion-text-center"><b>Total</b></ion-col>
         <ion-col class="ion-text-center"><b>Acciones</b></ion-col>
       </ion-row>
     </ion-card-header>
     <ion-row *ngFor="let f of listadoDeBusqueda">
       <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.idDocumento}}</b></ion-col>
+<!--      <ion-col class="ion-text-right ion-padding-vertical"><b>{{f.folio}}</b></ion-col>-->
       <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.proveedor}}</b></ion-col>
       <ion-col class="ion-text-right ion-padding-vertical"><b>{{f.importe | currency: 'USD'}}</b></ion-col>
       <ion-col class="ion-text-right ion-padding-vertical"><b>{{f.iva | currency: 'USD'}}</b></ion-col>
-      <ion-col class="ion-text-right ion-padding-vertical"><b>{{f.total | currency: 'USD'}}</b></ion-col>
       <ion-col class="ion-text-center">
-        <ion-button fill="clear" size="small">
+        <ion-button fill="clear" size="small" *ngIf="f.subconcepto != null" (click)="envio(f)">
           <ion-icon name="navigate-outline"  color="primary" slot="icon-only"></ion-icon>
         </ion-button>
       </ion-col>

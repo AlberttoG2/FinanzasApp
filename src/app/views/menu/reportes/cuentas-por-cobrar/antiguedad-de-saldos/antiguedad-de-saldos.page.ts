@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {_cuentasPorCobrar} from '../../../../../interfaces/data.interface';
 import {FormGroup} from '@angular/forms';
+import {ScreenOrientation} from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-antiguedad-de-saldos',
@@ -12,9 +13,14 @@ export class AntiguedadDeSaldosPage implements OnInit {
   cards: _cuentasPorCobrar[];
   busqueda: FormGroup;
 
-  constructor() { }
+  constructor(private screenOrientation: ScreenOrientation) { }
 
+  // tslint:disable-next-line:use-lifecycle-interface
+  ngOnDestroy(){
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+  }
   ngOnInit() {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
   }
 
   cargarOperaciones() {
