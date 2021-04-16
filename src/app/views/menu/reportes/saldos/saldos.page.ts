@@ -12,4 +12,9 @@ export class SaldosPage implements OnInit {
   ngOnInit() {
   }
 
+  cargarOperaciones() {
+  }
+
+  regresar() {
+  }
 }

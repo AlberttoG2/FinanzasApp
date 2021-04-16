@@ -12,4 +12,9 @@ export class HistoricoDePagosPage implements OnInit {
   ngOnInit() {
   }
 
+  regresar() {
+  }
+
+  cargarOperaciones() {
+  }
 }
