@@ -18,11 +18,6 @@
   <ion-card mode="ios" *ngIf="!cards">
     <form [formGroup]="busqueda">
       <ion-item>
-        <ion-label position="floating"><b>Fecha de Busqueda</b></ion-label>
-        <ion-datetime mode="ios" placeholder="Selecionar fecha" cancel-text="Cancelar" formControlName="fecha"
-                      done-text="Confirmar"></ion-datetime>
-      </ion-item>
-      <ion-item>
         <ion-label position="floating"><b>Tipo de Operación</b></ion-label>
         <ion-select placeholder="Selecionar Tipo de Operación" formControlName="tipo">
           <ion-select-option value="PagoProveedores">Pago a Proveedor</ion-select-option>
@@ -46,14 +41,8 @@
       <ion-icon name="briefcase-outline" slot="start"></ion-icon>
       <b>Pago a Proveedor</b>
       <ion-buttons slot="end">
-        <ion-button fill="clear" (click)="showInfo()">
+        <ion-button fill="clear" (click)="detalles(c)">
           <ion-icon name="alert-circle-outline" color="primary" slot="icon-only"></ion-icon>
-        </ion-button>
-        <ion-button fill="clear" (click)="aceptar()">
-          <ion-icon name="checkmark-done-circle-outline" color="success" slot="icon-only"></ion-icon>
-        </ion-button>
-        <ion-button fill="clear" (click)="cancelar()">
-          <ion-icon color="danger" name="close-circle-outline" slot="icon-only"></ion-icon>
         </ion-button>
       </ion-buttons>
     </ion-item>

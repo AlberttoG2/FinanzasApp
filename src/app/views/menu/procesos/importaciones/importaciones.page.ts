@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {_importaciones, _terminosDeCobro} from '../../../../interfaces/data.interface';
+import {_combo, _importaciones, _terminosDeCobro} from '../../../../interfaces/data.interface';
 import {RestService} from '../../../../services/rest.service';
 import {AlertController, ModalController} from '@ionic/angular';
 import {DialogService} from '../../../../services/dialog.service';
 import {Subscription} from 'rxjs';
 import {FormImportacionesPage} from './form-importaciones/form-importaciones.page';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-importaciones',
@@ -18,20 +20,54 @@ export class ImportacionesPage implements OnInit {
   public title = 'Importaciones';
   public subtitle = 'Importacion';
   public getRowsSub: Subscription;
+  public busqueda: FormGroup;
+  public razonSocialCombo: _combo[];
+  public cuentaCombo: _combo[];
+  cards: _importaciones[];
 
   constructor(private restService: RestService, private modalCtrl: ModalController, private alertCtrl: AlertController,
-              private dialogService: DialogService) { }
+              private dialogService: DialogService, private screenOrientation: ScreenOrientation) { }
 
+  // tslint:disable-next-line:use-lifecycle-interface
+  ngOnDestroy(){
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+  }
   ngOnInit() {
+    // console.log(this.screenOrientation.type); // logs the current orientation, example: 'landscape'
+
+// set to landscape
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+    this.restService.combo<_combo[]>({id: 'RazonSocial'}, 'comboController').subscribe(result =>
+      this.razonSocialCombo = result);
+    this.formulario();
     this.listadoDeBusqueda = this.listado;
     this.restService.initService(this.domain);
-    this.index();
+    // this.index();
   }
-
+  formulario() {
+    this.busqueda = new FormGroup({
+      fechaInicio: new FormControl('', Validators.required),
+      fechaFin: new FormControl('', Validators.required),
+      razonSocial: new FormControl(''),
+      alias: new FormControl(''),
+      archivo: new FormControl('')
+    });
+  }
+  cargarCuentas(value: any) {
+    console.log(value);
+    this.restService.combo<_combo[]>({id: value, banco: 0}, 'comboCuenta').subscribe(result =>
+      this.cuentaCombo = result);
+  }
   index() {
-    this.getRowsSub = this.restService.index<_importaciones[]>().subscribe(respuesta => {
+    this.getRowsSub = this.restService.index<_importaciones[]>({
+      fechaInicio: this.busqueda.get('fechaInicio').value,
+      fechaFin: this.busqueda.get('fechaFin').value,
+      razonSocial: this.busqueda.get('razonSocial').value,
+      alias: this.busqueda.get('alias').value,
+      archivo: this.busqueda.get('archivo').value
+    }, 'consultaExtractos').subscribe(respuesta => {
       this.listado = respuesta;
-      this.listadoDeBusqueda = respuesta;
+      this.cards = respuesta;
     });
   }
 
@@ -109,4 +145,8 @@ export class ImportacionesPage implements OnInit {
     }, 500);
   }
 
+  reset(){
+    this.cards = null;
+    this.ngOnInit();
+  }
 }
