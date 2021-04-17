@@ -16,7 +16,7 @@
 
 <ion-content>
   <ion-card mode="ios" *ngIf="!cards">
-    <form [formGroup]="busqueda">
+    <form [formGroup]="formulario">
       <ion-item>
         <ion-label position="floating"><b>Fecha Inicial</b></ion-label>
         <ion-datetime mode="ios" placeholder="Selecionar fecha" cancel-text="Cancelar" formControlName="fecha"
@@ -40,7 +40,7 @@
         </ion-select>
       </ion-item>
 
-      <ion-button expand="full" mode="ios" [disabled]="busqueda.invalid" (click)="cargarOperaciones()" shape="round" class="ion-margin" color="dark">Buscar Operaciones
+      <ion-button expand="full" mode="ios" [disabled]="formulario.invalid" (click)="cargarOperaciones()" shape="round" class="ion-margin" color="dark">Buscar Operaciones
         <ion-icon name="search" slot="end"></ion-icon>
       </ion-button>
     </form>
@@ -60,12 +60,12 @@
         <ion-col class="ion-text-center"><b>Estatus</b></ion-col>
       </ion-row>
     </ion-card-header>
-    <ion-row *ngFor="let f of listadoDeBusqueda">
+    <ion-row *ngFor="let f of listadoBusqueda">
       <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.folio}}</b></ion-col>
-      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.proveedor}}</b></ion-col>
+      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.nombreProveedor}}</b></ion-col>
       <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.nombreProveedor}}</b></ion-col>
       <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.razonSocial}}</b></ion-col>
-      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.tipoDeOperacion}}</b></ion-col>
+      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.tipoOperacion}}</b></ion-col>
       <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.moneda}}</b></ion-col>
       <ion-col class="ion-text-right ion-padding-vertical"><b>{{f.monto | currency: 'USD'}}</b></ion-col>
       <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.fecha}}</b></ion-col>

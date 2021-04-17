@@ -653,6 +653,7 @@ export class _recepcionFacturas {
   nombreEmisor: string;
   iva: string|number;
   proveedor: string;
+  nombreProveedor: string;
   idProveedor: string;
   fechaRecepcion: string|Date;
   factura: string;

@@ -17,10 +17,10 @@
 <ion-content>
 
   <ion-card mode="ios" *ngIf="!cards">
-    <form [formGroup]="busqueda">
+    <form [formGroup]="factura">
       <ion-item>
         <ion-label position="floating"><b>Fecha de Inicio</b></ion-label>
-        <ion-datetime mode="ios" placeholder="Selecionar fecha Inicio" cancel-text="Cancelar" formControlName="fechaInicial"
+        <ion-datetime mode="ios" placeholder="Selecionar fecha Inicio" cancel-text="Cancelar" formControlName="fechaInicio"
                       done-text="Confirmar"></ion-datetime>
       </ion-item>
       <ion-item>
@@ -30,17 +30,17 @@
       </ion-item>
       <ion-item>
         <ion-label position="floating"><b>Razon Social</b></ion-label>
-        <ion-select placeholder="Selecionar Tipo de Operación" formControlName="tipo">
+        <ion-select placeholder="Selecionar Tipo de Operación" formControlName="razonSocial">
+          <ion-select-option *ngFor="let i of razonSocialCombo" value="{{i.id}}">{{i.descripcion}}</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-item>
         <ion-label position="floating"><b>Estatus</b></ion-label>
-        <ion-select placeholder="Selecionar Tipo de Operación" formControlName="tipo">
-          <ion-select-option value="PagoProveedores">Cobrada</ion-select-option>
-          <ion-select-option value="Intercompanias">Pendiente</ion-select-option>
+        <ion-select placeholder="Selecionar Tipo de Operación" formControlName="estatus">
+          <ion-select-option *ngFor="let  i of [{id: true, descripcion: 'Cobrada'}, {id: false, descripcion: 'Pendiente'}]" value="{{i.id}}">{{i.descripcion}}</ion-select-option>
         </ion-select>
       </ion-item>
-      <ion-button expand="full" mode="ios" [disabled]="busqueda.invalid" (click)="cargarOperaciones()" shape="round" class="ion-margin" color="dark">Buscar Operaciones
+      <ion-button expand="full" mode="ios" [disabled]="factura.invalid" (click)="index()" shape="round" class="ion-margin" color="dark">Buscar Operaciones
         <ion-icon name="search" slot="end"></ion-icon>
       </ion-button>
     </form>
@@ -54,18 +54,18 @@
         <ion-col class="ion-text-center"><b>Folio</b></ion-col>
         <ion-col class="ion-text-center"><b>Monto Total</b></ion-col>
         <ion-col class="ion-text-center"><b>Fecha de Vencimiento</b></ion-col>
-        <ion-col class="ion-text-center"><b>Estatus</b></ion-col>
+<!--        <ion-col class="ion-text-center"><b>Estatus</b></ion-col>-->
         <ion-col class="ion-text-center"><b>Saldo</b></ion-col>
       </ion-row>
     </ion-card-header>
     <ion-row *ngFor="let f of listadoDeBusqueda">
       <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.cliente}}</b></ion-col>
-      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.emisor}}</b></ion-col>
-      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.folio}}</b></ion-col>
+      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.razonSocial}}</b></ion-col>
+      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.id}}</b></ion-col>
       <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.monto | currency: 'USD'}}</b></ion-col>
-      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.fechaVencimiento}}</b></ion-col>
-      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.estatus}}</b></ion-col>
-      <ion-col class="ion-text-right ion-padding-vertical"><b>{{f.saldo | currency: 'USD'}}</b></ion-col>
+      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.fechaEmision}}</b></ion-col>
+<!--      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.}}</b></ion-col>-->
+      <ion-col class="ion-text-right ion-padding-vertical"><b>{{f.total | currency: 'USD'}}</b></ion-col>
       <ion-col class="ion-text-center">
         <ion-button fill="clear" size="small">
           <ion-icon name="navigate-outline"  color="primary" slot="icon-only"></ion-icon>

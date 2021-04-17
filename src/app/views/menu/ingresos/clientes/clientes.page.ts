@@ -5,6 +5,8 @@ import {RestService} from '../../../../services/rest.service';
 import {AlertController, ModalController} from '@ionic/angular';
 import {FormClientesPage} from './form-clientes/form-clientes.page';
 import {DialogService} from '../../../../services/dialog.service';
+import {error} from '@angular/compiler/src/util';
+import {ScreenOrientation} from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-clientes',
@@ -19,9 +21,11 @@ export class ClientesPage implements OnInit {
   public title = 'Clientes';
   public subtitle = 'Cliente';
   constructor(private restService: RestService,
-              private modalCtrl: ModalController, public alertController: AlertController, private dialogService: DialogService) { }
+              private modalCtrl: ModalController, public alertController: AlertController, private dialogService: DialogService,
+              private screenOrientation: ScreenOrientation) { }
 
   ngOnInit() {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.listadoDeBusqueda = this.listado;
     this.restService.initService(this.domain);
     this.index();
@@ -77,8 +81,9 @@ export class ClientesPage implements OnInit {
           text: 'Confirmar',
           handler: () => {
             // @ts-ignore
-            this.restService.delete<_clientes>(item.id)._subscribe(() =>
-              this.dialogService.presentToast(this.subtitle + 'con Folio' + item.id + 'Eliminado', 3, false).then(() => this.index()));
+            this.restService.delete<_clientes>(item.id).subscribe(() => {
+              this.dialogService.presentToast(this.subtitle + 'con Folio' + item.id + ' Eliminado', 3, false).then(() => this.index());
+          }, () => this.dialogService.presentToast('Error al eliminar, el registro se encuenta en uso', 3, false));
           }
         }
       ]

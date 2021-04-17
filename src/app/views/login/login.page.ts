@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthGuard} from '../../services/auth.guard';
 import {Router} from '@angular/router';
 import {DialogService} from '../../services/dialog.service';
+import {ScreenOrientation} from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-login',
@@ -15,10 +16,11 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
   constructor(
     private http: HttpClient, private globalService: GlobalService, private formBuilder: FormBuilder,
-    private authGuard: AuthGuard, private router: Router, private dialogService: DialogService
-  ) { }
+    private authGuard: AuthGuard, private router: Router, private dialogService: DialogService,
+    private screenOrientation: ScreenOrientation) { }
 
   ngOnInit() {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     const validar = this.validarSesion();
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],

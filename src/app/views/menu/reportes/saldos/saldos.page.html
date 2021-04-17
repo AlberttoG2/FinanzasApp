@@ -16,7 +16,7 @@
 
 <ion-content>
   <ion-card mode="ios" *ngIf="!cards">
-    <form [formGroup]="busqueda">
+    <form [formGroup]="saldos">
       <ion-item>
         <ion-label position="floating"><b>Fecha</b></ion-label>
         <ion-datetime mode="ios" placeholder="Selecionar fecha" cancel-text="Cancelar" formControlName="fecha"
@@ -28,7 +28,7 @@
         </ion-select>
       </ion-item>
 
-      <ion-button expand="full" mode="ios" [disabled]="busqueda.invalid" (click)="cargarOperaciones()" shape="round" class="ion-margin" color="dark">Buscar Operaciones
+      <ion-button expand="full" mode="ios" [disabled]="saldos.invalid" (click)="cargarOperaciones()" shape="round" class="ion-margin" color="dark">Buscar Operaciones
         <ion-icon name="search" slot="end"></ion-icon>
       </ion-button>
     </form>

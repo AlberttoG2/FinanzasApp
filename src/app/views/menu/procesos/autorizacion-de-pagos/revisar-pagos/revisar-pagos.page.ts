@@ -7,6 +7,7 @@ import {AlertController, ModalController} from '@ionic/angular';
 import {DetalleOperacionPage} from '../detalle-operacion/detalle-operacion.page';
 import {DialogService} from '../../../../../services/dialog.service';
 import {HttpClient} from '@angular/common/http';
+import {ScreenOrientation} from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-revisar-pagos',
@@ -22,10 +23,11 @@ export class RevisarPagosPage implements OnInit {
   public cards: _autorizacionDePagos[];
 
   constructor(private restService: RestService, private globalService: GlobalService, public modalController: ModalController,
-              public alertController: AlertController, private dialogService: DialogService, private http: HttpClient) {
-  }
+              public alertController: AlertController, private dialogService: DialogService, private http: HttpClient,
+              private screenOrientation: ScreenOrientation) { }
 
   ngOnInit() {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
     this.restService.initService('AutorizacionDePagos');
     this.busqueda = this.restService.buildForm({ fecha: ['', Validators.required], tipo: ['', Validators.required] });
   }

@@ -23,7 +23,7 @@ export class FormProveedoresPage implements OnInit {
     this.formulario = this.restService.buildForm({
       id: [this.data.data.id ? this.data.data.id : ''],
       nombre: [this.data.data.nombre ? this.data.data.nombre : '', Validators.required],
-      rfc: [this.data.data.rfc ? this.data.data.rfc : '', [Validators.required, Validators.minLength(12), Validators.maxLength(13)]],
+      rfc: [this.data.data.rfc ? this.data.data.rfc : '', [Validators.required, Validators.min(12), Validators.max(13)]],
       moneda: [this.data.data.moneda ? this.data.data.moneda.id : '', Validators.required],
       nombreDeContacto: [this.data.data.nombreDeContacto ? this.data.data.nombreDeContacto : '', Validators.required],
       correoElectronico: [this.data.data.correoElectronico ? this.data.data.correoElectronico : '', Validators.required],

@@ -1,28 +1,74 @@
-<app-header title="Propuesta de Pagos"></app-header>
+<ion-header>
+  <ion-toolbar mode="ios" color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end" *ngIf="listado">
+      <ion-button fill="clear" (click)="regresar()">
+        <ion-icon name="refresh-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>Propuesta de Pagos</ion-title>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
-  <ion-card mode="ios">
-    <ion-card-header color="dark" class="ion-no-padding">
-    <ion-row>
-      <ion-col class="ion-text-center"><b>ID Documento</b></ion-col>
-      <ion-col class="ion-text-center"><b>Proveedor</b></ion-col>
-      <ion-col class="ion-text-center"><b>Importe</b></ion-col>
-      <ion-col class="ion-text-center"><b>IVA</b></ion-col>
-      <ion-col class="ion-text-center"><b>Total</b></ion-col>
-      <ion-col class="ion-text-center"><b>Acciones</b></ion-col>
-    </ion-row>
-    </ion-card-header>
-    <ion-row>
-      <ion-col class="ion-text-center ion-padding-vertical"><b>ID Documento</b></ion-col>
-      <ion-col class="ion-text-center ion-padding-vertical"><b>Proveedor</b></ion-col>
-      <ion-col class="ion-text-right ion-padding-vertical"><b>Importe</b></ion-col>
-      <ion-col class="ion-text-right ion-padding-vertical"><b>IVA</b></ion-col>
-      <ion-col class="ion-text-right ion-padding-vertical"><b>Total</b></ion-col>
-      <ion-col class="ion-text-center">
-        <ion-button fill="clear" size="small">
-          <ion-icon name="checkmark-done-circle-outline" color="success" slot="icon-only"></ion-icon>
-        </ion-button>
-      </ion-col>
-    </ion-row>
+
+  <ion-card mode="ios" *ngIf="!listado">
+    <form [formGroup]="busqueda">
+      <ion-item>
+        <ion-label position="floating"><b>Fecha Inicio</b></ion-label>
+        <ion-datetime mode="ios" placeholder="Selecionar fecha" cancel-text="Cancelar" formControlName="fechaInicio"
+                      done-text="Confirmar"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating"><b>Fecha Fin</b></ion-label>
+        <ion-datetime mode="ios" placeholder="Selecionar fecha" cancel-text="Cancelar" formControlName="fechaFin"
+                      done-text="Confirmar"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Seleccionar Razón Social</ion-label>
+        <ionic-selectable
+          [items]="razonSocialCombo" itemValueField="id" closeButtonText="Cancelar"
+          itemTextField="descripcion" [canSearch]="true" (onChange)="parchar($event)">
+        </ionic-selectable>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Seleccionar Proveedor</ion-label>
+        <ionic-selectable
+          [items]="proveedoresCombo" itemValueField="id" closeButtonText="Cancelar"
+          itemTextField="descripcion" [canSearch]="true" (onChange)="parchar($event)">
+        </ionic-selectable>
+      </ion-item>
+      <ion-button expand="full" mode="ios" [disabled]="busqueda.invalid" (click)="index()" shape="round" class="ion-margin" color="dark">Buscar Propuestas
+        <ion-icon name="search" slot="end"></ion-icon>
+      </ion-button>
+    </form>
   </ion-card>
+    <ion-card mode="ios" *ngIf="listado">
+      <ion-card-header color="dark" class="ion-no-padding">
+        <ion-row>
+          <ion-col class="ion-text-center"><b>ID Documento</b></ion-col>
+          <!--        <ion-col class="ion-text-center"><b>Folio</b></ion-col>-->
+          <ion-col class="ion-text-center"><b>Proveedor</b></ion-col>
+          <ion-col class="ion-text-center"><b>Importe</b></ion-col>
+          <ion-col class="ion-text-center"><b>IVA</b></ion-col>
+          <ion-col class="ion-text-center"><b>Acciones</b></ion-col>
+        </ion-row>
+      </ion-card-header>
+      <ion-row *ngFor="let f of listadoDeBusqueda">
+        <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.idDocumento}}</b></ion-col>
+        <!--      <ion-col class="ion-text-right ion-padding-vertical"><b>{{f.folio}}</b></ion-col>-->
+        <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.nombreProveedor}}</b></ion-col>
+        <ion-col class="ion-text-right ion-padding-vertical"><b>{{f.importe | currency: 'USD'}}</b></ion-col>
+        <ion-col class="ion-text-right ion-padding-vertical"><b>{{f.iva | currency: 'USD'}}</b></ion-col>
+        <ion-col class="ion-text-center">
+          <ion-button fill="clear" size="small" (click)="envio(f)">
+            <ion-icon name="navigate-outline"  color="primary" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
 </ion-content>

@@ -17,18 +17,19 @@
 <ion-content>
 
   <ion-card mode="ios" *ngIf="!cards">
-    <form [formGroup]="busqueda">
+    <form [formGroup]="formulario">
       <ion-item>
         <ion-label position="floating"><b>Fecha</b></ion-label>
-        <ion-datetime mode="ios" placeholder="Selecionar fecha" cancel-text="Cancelar" formControlName="fecha"
+        <ion-datetime mode="ios" placeholder="Selecionar fecha" cancel-text="Cancelar" formControlName="fechaInicio"
                       done-text="Confirmar"></ion-datetime>
       </ion-item>
       <ion-item>
         <ion-label position="floating"><b>Razon Social</b></ion-label>
         <ion-select placeholder="Selecionar Razon Social" formControlName="razonSocial">
+          <ion-select-option *ngFor="let i of razonSocialCombo" value="{{i.id}}">{{i.descripcion}}</ion-select-option>
         </ion-select>
       </ion-item>
-      <ion-button expand="full" mode="ios" [disabled]="busqueda.invalid" (click)="cargarOperaciones()" shape="round" class="ion-margin" color="dark">Buscar
+      <ion-button expand="full" mode="ios" [disabled]="formulario.invalid" (click)="index()" shape="round" class="ion-margin" color="dark">Buscar
         <ion-icon name="search" slot="end"></ion-icon>
       </ion-button>
     </form>
@@ -57,9 +58,9 @@
       <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.unMesAtraso}}</b></ion-col>
       <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.dosMesesAtraso}}</b></ion-col>
       <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.tresMesesAtraso}}</b></ion-col>
-      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.seisMesesAtraso}}</b></ion-col>
-      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.anioAtraso}}</b></ion-col>
-      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.masAnioAtraso}}</b></ion-col>
+<!--      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.seisMesesAtraso}}</b></ion-col>-->
+<!--      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.anioAtraso}}</b></ion-col>-->
+<!--      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.masAnioAtraso}}</b></ion-col>-->
       <ion-col class="ion-text-center">
         <ion-button fill="clear" size="small">
           <ion-icon name="navigate-outline"  color="primary" slot="icon-only"></ion-icon>

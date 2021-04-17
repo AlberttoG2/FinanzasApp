@@ -5,6 +5,7 @@ import {RestService} from '../../../../services/rest.service';
 import {AlertController, ModalController} from '@ionic/angular';
 import {DialogService} from '../../../../services/dialog.service';
 import {FormTerminosDePagoPage} from './form-terminos-de-pago/form-terminos-de-pago.page';
+import {ScreenOrientation} from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-terminos-de-pago',
@@ -22,9 +23,11 @@ export class TerminosDePagoPage implements OnInit {
   constructor(private restService: RestService,
               private modalCtrl: ModalController,
               private alertCtrl: AlertController,
-              private dialogService: DialogService) { }
+              private dialogService: DialogService,
+              private screenOrientation: ScreenOrientation) { }
 
   ngOnInit() {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.listadoDeBusqueda = this.listado;
     this.restService.initService(this.domain);
     this.index();
@@ -90,8 +93,9 @@ export class TerminosDePagoPage implements OnInit {
       buttons: [
         {text: 'Cancelar', role: 'cancel', handler: () => this.dialogService.presentToast('Operacion cancelada', 3, false)},
         {
-          text: 'Confirmar', handler: () => this.restService.delete<_terminosDePago>(item.id).subscribe(() =>
-            this.dialogService.presentToast(this.subtitle + ' con folio: ' + item.id + ' Eliminado', 3.5, false).then(() => this.index()))
+          text: 'Confirmar', handler: () => this.restService.delete<_terminosDePago>(item.id).subscribe(() => {
+            this.dialogService.presentToast(this.subtitle + ' con folio: ' + item.id + ' Eliminado', 3.5, false).then(() => this.index());
+          }, () => this.dialogService.presentToast('Error al eliminar, el registro se encuenta en uso', 3, false))
         }]
     });
     await alert.present();

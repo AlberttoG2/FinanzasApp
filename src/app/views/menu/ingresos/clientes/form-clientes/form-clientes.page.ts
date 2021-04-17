@@ -23,7 +23,7 @@ export class FormClientesPage implements OnInit {
     this.restService.combo<_combo[]> ({id: 'RazonSocial'}, 'comboController').subscribe(result => this.razonSocialCombo = result);
     this.restService.combo<_combo[]> ( {id: 'Divisa'}, 'comboController').subscribe( result => this.monedaCombo = result);
     this.formulario = this.restService.buildForm({
-      id: [this.data.data.id ? this.data.data.id : '', Validators.required],
+      id: [this.data.data.id ? this.data.data.id : ''],
       razonSocial: [this.data.data.razonSocial ? this.data.data.razonSocial.id : '', Validators.required],
       nombre: [this.data.data.nombre ? this.data.data.nombre : '', Validators.required],
       rfc: [this.data.data.rfc ? this.data.data.rfc : '', Validators.required],

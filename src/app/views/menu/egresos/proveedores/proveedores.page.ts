@@ -6,6 +6,7 @@ import {Subscription} from 'rxjs';
 import {RestService} from '../../../../services/rest.service';
 import {DialogService} from '../../../../services/dialog.service';
 import {FormClientesPage} from '../../ingresos/clientes/form-clientes/form-clientes.page';
+import {ScreenOrientation} from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-proveedores',
@@ -24,9 +25,11 @@ export class ProveedoresPage implements OnInit {
   constructor(private restService: RestService,
               private modalCtrl: ModalController,
               public alertController: AlertController,
-              private dialogService: DialogService) { }
+              private dialogService: DialogService,
+              private screenOrientation: ScreenOrientation) { }
 
   ngOnInit() {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.listadoDeBusqueda = this.listado;
     this.restService.initService(this.domain);
     this.index();
@@ -82,8 +85,9 @@ export class ProveedoresPage implements OnInit {
         }, {
           text: 'Confirmar',
           handler: () => {
-            this.restService.delete<_proveedores>(item.id).subscribe(() =>
-              this.dialogService.presentToast(this.subtitle + 'con Folio' + item.id + 'Eliminado', 3, false).then(() => this.index()));
+            this.restService.delete<_proveedores>(item.id).subscribe(() => {
+              this.dialogService.presentToast(this.subtitle + 'con Folio' + item.id + 'Eliminado', 3, false).then(() => this.index());
+            }, () => this.dialogService.presentToast('Error al eliminar, el registro se encuenta en uso', 3, false));
           }
         }
       ]

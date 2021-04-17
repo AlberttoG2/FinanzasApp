@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  serverUrl: 'http://66.226.77.243:8000/wssaccsalight/'
-  // serverUrl: 'http://192.168.0.4:8080/wsbioethik/'
+  // serverUrl: 'http://66.226.77.243:8000/wssaccsalight/'
+  serverUrl: 'http://192.168.1.79:8080/wsbioethik/'
 };
 
 /*
