@@ -97,11 +97,11 @@ export class MenuPage implements OnInit {
           url: '/menu/reportes/saldos',
           icon: 'cash-outline'
         },
-        {
-          title: 'Tablero de Control',
-          url: '/menu/reportes/tablero-de-control',
-          icon: 'clipboard'
-        },
+        // {
+        //   title: 'Tablero de Control',
+        //   url: '/menu/reportes/tablero-de-control',
+        //   icon: 'clipboard'
+        // },
       ]
     },
   ];

@@ -1,9 +1,30 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>form-recepcion</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-subheader title="{{data.title}}"></app-subheader>
 
 <ion-content>
-
+  <form [formGroup]="formTerminosDePago">
+    <ion-card hidden>
+      <ion-item>
+        <ion-label position="stacked"><b>Folio</b></ion-label>
+        <ion-input type="number" placeholder="Folio" formControlName="id"></ion-input>
+      </ion-item>
+    </ion-card>
+    <ion-card class="ion-padding">
+      <ion-item lines="none">
+        <ion-label>Factura XML</ion-label>
+        <input type="file"  (change)="onFileChange($event)"/>
+      </ion-item>
+    </ion-card>
+    <ion-row>
+      <ion-col size="6">
+        <ion-button expand="block" mode="ios" color="danger" fill="outline" (click)="cancel()">
+          Cancelar
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="block" mode="ios" [disabled]="formTerminosDePago.invalid" (click)="save()">
+          Guardar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
 </ion-content>

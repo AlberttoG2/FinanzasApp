@@ -3,10 +3,12 @@ import {ScreenOrientation} from '@ionic-native/screen-orientation/ngx';
 import {RestService} from '../../../../services/rest.service';
 import {_clientes, _propuestaPagos, _recepcionFacturas, _terminosDePago} from '../../../../interfaces/data.interface';
 import {Subscription} from 'rxjs';
-import {AlertController} from '@ionic/angular';
+import {AlertController, ModalController} from '@ionic/angular';
 import {DialogService} from '../../../../services/dialog.service';
 import {GlobalService} from '../../../../services/global.service';
 import {HttpClient} from '@angular/common/http';
+import {FormTerminosDePagoPage} from '../../egresos/terminos-de-pago/form-terminos-de-pago/form-terminos-de-pago.page';
+import {FormRecepcionPage} from './form-recepcion/form-recepcion.page';
 
 @Component({
   selector: 'app-recepcion',
@@ -22,7 +24,8 @@ export class RecepcionPage implements OnInit {
   public subtitle = 'Cliente';
 
   constructor(private screenOrientation: ScreenOrientation, private restService: RestService, private alertCtrl: AlertController,
-              private dialogService: DialogService, private globalService: GlobalService, private http: HttpClient) {
+              private dialogService: DialogService, private globalService: GlobalService, private http: HttpClient,
+              private modalCtrl: ModalController) {
   }
 
   ngOnInit() {
@@ -61,5 +64,33 @@ export class RecepcionPage implements OnInit {
         }]
     });
     await alert.present();
+  }
+
+  add() {
+    this.restService.create<_recepcionFacturas>().subscribe(async datos => {
+      const modal = await this.modalCtrl.create({
+        component: FormRecepcionPage,
+        cssClass: 'modal-wrapper-terminos',
+        componentProps: {
+          data: {title: 'Agregar ' + this.title, data: datos}
+        }
+      });
+      await modal.present();
+      const {data} = await modal.onDidDismiss();
+      if ({data}.data !== undefined) {
+        const result = {data}.data;
+        const formData = new FormData();
+        formData.append('id', result.id);
+        if (result.file) {
+          formData.append('file', result.file, result.file.name);
+        }
+
+        this.http.post(this.globalService.Url + 'RecepcionFacturas/save', formData, { headers: {
+            Authorization: 'Bearer=' + this.globalService.getAuthToken()
+          }
+        }).subscribe(() =>
+          this.dialogService.presentToast('¡¡ ' + this.subtitle + ' Creado Exitosamente!!', 3.5, false).then(() => this.index()));
+      }
+    });
   }
 }

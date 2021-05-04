@@ -19,24 +19,18 @@
     <form [formGroup]="formulario">
       <ion-item>
         <ion-label position="floating"><b>Fecha Inicial</b></ion-label>
-        <ion-datetime mode="ios" placeholder="Selecionar fecha" cancel-text="Cancelar" formControlName="fecha"
+        <ion-datetime mode="ios" placeholder="Selecionar fecha" cancel-text="Cancelar" formControlName="fechaInicio"
                       done-text="Confirmar"></ion-datetime>
       </ion-item>
       <ion-item>
         <ion-label position="floating"><b>Fecha Final</b></ion-label>
-        <ion-datetime mode="ios" placeholder="Selecionar fecha" cancel-text="Cancelar" formControlName="fecha"
+        <ion-datetime mode="ios" placeholder="Selecionar fecha" cancel-text="Cancelar" formControlName="fechaFin"
                       done-text="Confirmar"></ion-datetime>
       </ion-item>
       <ion-item>
         <ion-label position="floating"><b>Operación</b></ion-label>
-        <ion-select placeholder="Selecionar Tipo de Operación" formControlName="tipo">
-          <ion-select-option value="PagoProveedores">Pago a Proveedores</ion-select-option>
-          <ion-select-option value="Intercompanias">Cheques</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating"><b>Razon Social</b></ion-label>
-        <ion-select placeholder="Selecionar Tipo de Operación" formControlName="tipo">
+        <ion-select placeholder="Selecionar Tipo de Operación" formControlName="operacion">
+          <ion-select-option *ngFor="let i of [{id: 'PagoProveedores', descripcion: 'Pago a proveedores'}, {id: 'Cheques', descripcion: 'Cheques'}]" value="{{i.id}}">{{i.descripcion}}</ion-select-option>
         </ion-select>
       </ion-item>
 

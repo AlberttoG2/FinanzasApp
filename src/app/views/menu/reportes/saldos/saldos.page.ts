@@ -15,6 +15,7 @@ export class SaldosPage implements OnInit {
   dominio = 'Reporte';
   public razonSocialCombo: _combo[];
   public saldos: FormGroup;
+  public aliasCombo: _combo[];
   constructor(private screenOrientation: ScreenOrientation, private restService: RestService) { }
 
   // tslint:disable-next-line:use-lifecycle-interface
@@ -37,7 +38,7 @@ export class SaldosPage implements OnInit {
     this.restService.index<_saldos[]>({
       fecha: this.saldos.get('fecha').value,
       razonSocial: this.saldos.get('razonSocial').value,
-      alias: this.saldos.get('alias').value
+      // alias: this.saldos.get('alias').value
     }, 'saldoTable').subscribe(res => {
       this.cards = res;
       this.listadoDeBusqueda = res;
@@ -45,5 +46,10 @@ export class SaldosPage implements OnInit {
   }
 
   regresar() {
+  }
+
+  cargarAlias(event: any) {
+    console.log(event);
+    this.restService.combo<_combo[]>({id: event.value}, 'comboAlias').subscribe(result => this.aliasCombo = result);
   }
 }

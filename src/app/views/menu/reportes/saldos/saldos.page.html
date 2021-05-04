@@ -24,7 +24,14 @@
       </ion-item>
       <ion-item>
         <ion-label position="floating"><b>Razon Social</b></ion-label>
-        <ion-select placeholder="Selecionar Tipo de Operación" formControlName="tipo">
+        <ion-select placeholder="Selecionar Tipo de Razon Social" formControlName="razonSocial" (ionChange)="cargarAlias($event.detail)">
+          <ion-select-option *ngFor="let i of razonSocialCombo" value="{{i.id}}">{{i.descripcion}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating"><b>Alias</b></ion-label>
+        <ion-select placeholder="Selecionar Tipo de Alias" formControlName="alias">
+          <ion-select-option *ngFor="let i of aliasCombo" value="{{i.id}}">{{i.descripcion}}</ion-select-option>
         </ion-select>
       </ion-item>
 
@@ -37,7 +44,7 @@
   <ion-card mode="ios">
     <ion-card-header color="dark" class="ion-no-padding">
       <ion-row>
-        <ion-col class="ion-text-center"><b>ID</b></ion-col>
+<!--        <ion-col class="ion-text-center"><b>ID</b></ion-col>-->
         <ion-col class="ion-text-center"><b>Razon Social</b></ion-col>
         <ion-col class="ion-text-center"><b>Banco</b></ion-col>
         <ion-col class="ion-text-center"><b>Cuenta</b></ion-col>
@@ -47,18 +54,18 @@
       </ion-row>
     </ion-card-header>
     <ion-row *ngFor="let f of listadoDeBusqueda">
-      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.id}}</b></ion-col>
+<!--      <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.id}}</b></ion-col>-->
       <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.razonSocial}}</b></ion-col>
       <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.banco}}</b></ion-col>
       <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.cuenta}}</b></ion-col>
       <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.moneda}}</b></ion-col>
       <ion-col class="ion-text-center ion-padding-vertical"><b>{{f.alias}}</b></ion-col>
       <ion-col class="ion-text-right ion-padding-vertical"><b>{{f.saldo | currency: 'USD'}}</b></ion-col>
-      <ion-col class="ion-text-center">
-        <ion-button fill="clear" size="small">
-          <ion-icon name="navigate-outline"  color="primary" slot="icon-only"></ion-icon>
-        </ion-button>
-      </ion-col>
+<!--      <ion-col class="ion-text-center">-->
+<!--        <ion-button fill="clear" size="small">-->
+<!--          <ion-icon name="navigate-outline"  color="primary" slot="icon-only"></ion-icon>-->
+<!--        </ion-button>-->
+<!--      </ion-col>-->
     </ion-row>
   </ion-card>
 </ion-content>

@@ -30,8 +30,6 @@ export class HistoricoDePagosPage implements OnInit {
     this.formulario = new FormGroup({
       fechaInicio: new FormControl('', Validators.required),
       fechaFin: new FormControl('', Validators.required),
-      razonSocial: new FormControl(''),
-      alias: new FormControl(''),
       operacion: new FormControl('')
     });
   }
@@ -43,8 +41,6 @@ export class HistoricoDePagosPage implements OnInit {
     this.restService.index<any>( {
       fechaInicio: this.formulario.get('fechaInicio').value,
       fechaFin: this.formulario.get('fechaFin').value,
-      razonSocial: this.formulario.get('razonSocial').value,
-      alias: this.formulario.get('alias').value,
       operacion: this.formulario.get('operacion').value
     }, 'reporteHistoricoPagos').subscribe(res => {
       this.cards = res;
